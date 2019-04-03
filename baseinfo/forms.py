@@ -5,8 +5,12 @@ class EmployerForm(forms.Form):
     title           = forms.CharField(max_length=60)
     tel             = forms.CharField(max_length=19)
     fax             = forms.CharField(max_length=19)
-    address         = forms.CharField()
+    address         = forms.CharField(required=False)
     insurance_code  = forms.CharField(max_length=20)
 
     def add_record(self):
         Employer.objects.create(**self.cleaned_data)
+
+class EmployeeStatusForm(forms.Form):
+    title           = forms.CharField(max_length=50)
+    description     = forms.CharField(widget=forms.Textarea)

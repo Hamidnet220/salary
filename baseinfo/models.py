@@ -9,21 +9,36 @@ class Employer(models.Model):
     insurance_code  = models.TextField(max_length=20,blank=True)
     is_deleted      = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.title
+
 class EmployeeStatus(models.Model):
     title           = models.CharField(max_length=50)
     description     = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.title
 
 class WorkStatus(models.Model):
     title           = models.CharField(max_length=50)
     description     = models.TextField()
 
+    def __str__(self):
+        return self.title
+
 class MaritalStatus(models.Model):
     title           = models.CharField(max_length=20)
     description     = models.TextField()
+
+    def __str__(self):
+        return self.title
     
 class Bank(models.Model):
     title           = models.CharField(max_length=50)
     description     = models.TextField()
+
+    def __str__(self):
+        return self.title
 
 
 class WorkGroup(models.Model):
@@ -32,14 +47,23 @@ class WorkGroup(models.Model):
     dwelling_benefit= models.DecimalField(max_digits=50,decimal_places=2)
     Bon_benefit     = models.DecimalField(max_digits=50,decimal_places=2)
 
+    def __str__(self):
+        return self.title
+
 class WorkPlace(models.Model):
     title           = models.CharField(max_length=60)
     description     = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.title
 
 
 class PostPlace(models.Model):
     title           = models.CharField(max_length=60)
     decription      = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.title
 
 
 
@@ -64,9 +88,14 @@ class Employee(models.Model):
     tel             = models.CharField(max_length=19,blank=True)
     mobile          = models.CharField(max_length=19,blank=True)
 
+    def __str__(self):
+        return "{}-{}-{}".format(self.lastname,self.firstname,self.national_code)
+
 
 class BankAccount(models.Model):
     employee        = models.ForeignKey(Employee,on_delete=models.CASCADE)
     account_number  = models.CharField(max_length=30)
     bank            = models.ForeignKey(Bank,on_delete=models.DO_NOTHING)
     is_active       = models.BooleanField(default=False)
+    def __str__(self):
+        return "{}-{}".format(self.employee,self.account_number)

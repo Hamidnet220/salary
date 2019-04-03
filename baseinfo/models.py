@@ -87,6 +87,7 @@ class Employee(models.Model):
     indsurence_exempt= models.BooleanField(default=False)
     tel             = models.CharField(max_length=19,blank=True)
     mobile          = models.CharField(max_length=19,blank=True)
+    description     = models.TextField(blank=True,null=True)
 
     def __str__(self):
         return "{}-{}-{}".format(self.lastname,self.firstname,self.national_code)

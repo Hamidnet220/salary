@@ -8,9 +8,12 @@ class EmployerForm(forms.Form):
     address         = forms.CharField(required=False)
     insurance_code  = forms.CharField(max_length=20)
 
-    def add_record(self):
+    def save_record(self):
         Employer.objects.create(**self.cleaned_data)
 
 class EmployeeStatusForm(forms.Form):
     title           = forms.CharField(max_length=50)
     description     = forms.CharField(widget=forms.Textarea)
+
+    def save_record(self):
+        EmployeeStatus.objects.create(**self.cleaned_data)

@@ -41,30 +41,32 @@ class PostPlace(models.Model):
     title           = models.CharField(max_length=60)
     decription      = models.TextField(blank=True)
 
+
+
+class Employee(models.Model):
+    employer        = models.ForeignKey(Employer,on_delete=models.DO_NOTHING)
+    firstname       = models.CharField(max_length=50)
+    lastname        = models.CharField(max_length=50)
+    fathername      = models.CharField(max_length=50)
+    national_code   = models.CharField(max_length=10)
+    id_number       = models.CharField(max_length=10)
+    insurance_id    = models.CharField(max_length=10)
+    employee_status = models.ForeignKey(EmployeeStatus,on_delete=models.DO_NOTHING)
+    work_place      = models.ForeignKey(WorkPlace,on_delete=models.SET_NULL,null=True)
+    post_place      = models.ForeignKey(PostPlace,on_delete=models.SET_NULL,null=True)
+    work_status     = models.ForeignKey(WorkStatus,on_delete=models.PROTECT)
+    marital_status  = models.ForeignKey(MaritalStatus,on_delete=models.DO_NOTHING)
+    children_count  = models.IntegerField()
+    work_group      = models.ForeignKey(WorkGroup,on_delete=models.SET_NULL,null=True)
+    work_place      = models.ForeignKey(WorkPlace,on_delete=models.SET_NULL,null=True)
+    tax_exempt      = models.BooleanField(default=False)
+    indsurence_exempt= models.BooleanField(default=False)
+    tel             = models.CharField(max_length=19,blank=True)
+    mobile          = models.CharField(max_length=19,blank=True)
+
+
 # class BankAccount(models.Model):
 #     employee        = models.ForeignKey(Employee,on_delete=models.CASCADE)
 #     account_number  = models.CharField(max_length=30)
 #     bank            = models.ForeignKey(Bank,on_delete=models.DO_NOTHING)
 #     is_active       = models.BooleanField(default=False)
-
-
-# class Employee(models.Model):
-#     employer        = models.ForeignKey(Employer,on_delete=models.DO_NOTHING)
-#     firstname       = models.CharField(max_length=50)
-#     lastname        = models.CharField(max_length=50)
-#     fathername      = models.CharField(max_length=50)
-#     national_code   = models.CharField(max_lenght=10)
-#     id_number       = models.CharField(max_length=10)
-#     insurance_id    = models.CharField(max_length=10)
-#     employee_status = models.ForeignKey(EmployeeStatus,on_delete=models.DO_NOTHING)
-#     work_place      = models.ForeignKey(WorkPlace,on_delete=models.SET_NULL,null=True)
-#     post_place      = models.ForeignKey(PostPlace,on_detete=models.SET_NULL,null=True)
-#     work_status     = models.ForeignKey(WorkStatus,on_delete=models.PROTECT)
-#     marital_status  = models.ForeignKey(MaritalStatus,on_delete=models.DO_NOTHING)
-#     children_count  = models.IntegerField()
-#     work_group      = models.ForeignKey(WorkGroup,on_delete=models.SET_NULL,null=True)
-#     work_place      = models.ForeignKey(WorkPlace,on_delete=models.SET_NULL,null=True)
-#     tax_exempt      = models.BooleanField(default=False)
-#     indsurence_exempt= models.BooleanField(default=False)
-#     tel             = models.CharField(max_length=19,blank=True)
-#     mobile          = models.CharField(max_length=19,blank=True)

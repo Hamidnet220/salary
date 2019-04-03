@@ -25,17 +25,18 @@ class Bank(models.Model):
     title           = models.CharField(max_length=50)
     description     = models.TextField()
 
+
+class WorkGroup(models.Model):
+    title           = models.CharField(max_length=100)
+    child_benefit   = models.DecimalField(max_digits=50,decimal_places=2)
+    dwelling_benefit= models.DecimalField(max_digits=50,decimal_places=2)
+    Bon_benefit     = models.DecimalField(max_digits=50,decimal_places=2)
+
 # class BankAccount(models.Model):
 #     employee        = models.ForeignKey(Employee,on_delete=models.CASCADE)
 #     account_number  = models.CharField(max_length=30)
 #     bank            = models.ForeignKey(Bank,on_delete=models.DO_NOTHING)
 #     is_active       = models.BooleanField(default=False)
-
-# class WorkGroup(modles.Model):
-#     title           = models.CharField(max_length=100)
-#     child_benefit   = models.DecimalField(max_digits=50,decimal_places=2)
-#     dwelling_benefit= models.DecimalField(max_digits=50,decimal_places=2)
-#     Bon_benefit     = models.DecimalField(max_digits=50,decimal_places=2)
 
 # class WorkPlace(models.Model):
 #     title           = models.CharField(max_length=60)

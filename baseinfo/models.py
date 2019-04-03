@@ -13,9 +13,9 @@ class EmployeeStatus(models.Model):
     title           = models.CharField(max_length=50)
     description     = models.TextField(blank=True)
 
-# class WorkStatus(models.Model):
-#     title           = models.CharField(max_length=50)
-#     description     = models.TextField()
+class WorkStatus(models.Model):
+    title           = models.CharField(max_length=50)
+    description     = models.TextField()
 
 # class MaritalStatus(models.Model):
 #     title           = models.CharField(max_length=20)

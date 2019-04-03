@@ -37,16 +37,16 @@ class WorkPlace(models.Model):
     description     = models.TextField(blank=True)
 
 
+class PostPlace(models.Model):
+    title           = models.CharField(max_length=60)
+    decription      = models.TextField(blank=True)
+
 # class BankAccount(models.Model):
 #     employee        = models.ForeignKey(Employee,on_delete=models.CASCADE)
 #     account_number  = models.CharField(max_length=30)
 #     bank            = models.ForeignKey(Bank,on_delete=models.DO_NOTHING)
 #     is_active       = models.BooleanField(default=False)
 
-
-# class PostPlace(models.Model):
-#     title           = models.CharField(max_length=60)
-#     decription      = models.TextField(blank=True)
 
 # class Employee(models.Model):
 #     employer        = models.ForeignKey(Employer,on_delete=models.DO_NOTHING)

@@ -9,9 +9,9 @@ class Employer(models.Model):
     insurance_code  = models.TextField(max_length=20,blank=True)
     is_deleted      = models.BooleanField(default=False)
 
-# class EmployeeStatus(models.Model):
-#     title           = models.CharField(max_length=50)
-#     description     = models.TextField(blank=True)
+class EmployeeStatus(models.Model):
+    title           = models.CharField(max_length=50)
+    description     = models.TextField(blank=True)
 
 # class WorkStatus(models.Model):
 #     title           = models.CharField(max_length=50)

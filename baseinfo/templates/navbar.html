@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>This is chapar website</title>
+    {% endblock head %}
+    <style>
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 8px 32px 8px 8px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #818181;
+            display: block;
+            transition: 0.1s;
+        }
+
+        .sdiebar .closebtn {
+            position: absolute;
+            top: 0;
+            left: 25px;
+            margin-right: 50px;
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            float: right;
+        }
+
+        #menu_button {
+            float: right;
+            margin-top: 6px;
+            margin-right: 6px;
+        }
+
+        #searchTextbox {
+            float: right;
+            margin: 14px 10px 10px 4px;
+            width: 25%;
+        }
+
+        #menu_button {
+            transition: margin-right 0.5s;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav" id="topNavbar">
+        <button class="openbtn" onclick="openNav()">☰ </button>
+        <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+            <a href="#">ایجاد سازمان/شرکت جدید</a>
+            <a href="#">مشاهده لیست حقوق جاری</a>
+            <a href="#">محاسبه حقوق</a>
+            <a href="#">محاسبه کارکرد</a>
+            <a href="#">گزارشات</a>
+        </div>
+        <a class="active" href="{% url 'home_view'  %}">صفحه اصلی</a>
+        <a href="#"><i class="fa fa-fw fa-envelope"></i> نامه های دریافتی</a>
+        <a href="#">نامه های ارسالی</a>
+        <a href="#">درباره من</a>
+        <input type="text" id="searchTextbox" name='search_value' placeholder="متن مورد نظر را وارد کنید...">
+        <a href=#><i class="fa fa-fw fa-search"></i>جستجو</a>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.body.style.marginRight = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+            document.body.style.marginRight = "0";
+        }
+    </script>
+
+</body>
+
+</html>

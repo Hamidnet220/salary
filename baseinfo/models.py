@@ -32,15 +32,17 @@ class WorkGroup(models.Model):
     dwelling_benefit= models.DecimalField(max_digits=50,decimal_places=2)
     Bon_benefit     = models.DecimalField(max_digits=50,decimal_places=2)
 
+class WorkPlace(models.Model):
+    title           = models.CharField(max_length=60)
+    description     = models.TextField(blank=True)
+
+
 # class BankAccount(models.Model):
 #     employee        = models.ForeignKey(Employee,on_delete=models.CASCADE)
 #     account_number  = models.CharField(max_length=30)
 #     bank            = models.ForeignKey(Bank,on_delete=models.DO_NOTHING)
 #     is_active       = models.BooleanField(default=False)
 
-# class WorkPlace(models.Model):
-#     title           = models.CharField(max_length=60)
-#     description     = models.TextField(blank=True)
 
 # class PostPlace(models.Model):
 #     title           = models.CharField(max_length=60)

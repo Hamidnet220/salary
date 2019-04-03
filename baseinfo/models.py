@@ -65,8 +65,8 @@ class Employee(models.Model):
     mobile          = models.CharField(max_length=19,blank=True)
 
 
-# class BankAccount(models.Model):
-#     employee        = models.ForeignKey(Employee,on_delete=models.CASCADE)
-#     account_number  = models.CharField(max_length=30)
-#     bank            = models.ForeignKey(Bank,on_delete=models.DO_NOTHING)
-#     is_active       = models.BooleanField(default=False)
+class BankAccount(models.Model):
+    employee        = models.ForeignKey(Employee,on_delete=models.CASCADE)
+    account_number  = models.CharField(max_length=30)
+    bank            = models.ForeignKey(Bank,on_delete=models.DO_NOTHING)
+    is_active       = models.BooleanField(default=False)

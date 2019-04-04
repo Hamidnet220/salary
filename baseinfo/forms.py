@@ -17,3 +17,10 @@ class EmployeeStatusForm(forms.Form):
 
     def save_record(self):
         EmployeeStatus.objects.create(**self.cleaned_data)
+
+class WorkStatusForm(forms.Form):
+    title           = forms.CharField(max_length=50)
+    description     = forms.CharField(widget=forms.Textarea,required=False)
+
+    def save_record(self):
+        WorkStatus.objects.create(**self.cleaned_data)

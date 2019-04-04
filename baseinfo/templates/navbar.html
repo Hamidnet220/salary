@@ -1,102 +1,185 @@
-<!DOCTYPE html>
-<html>
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="{% static 'css/base.css' %}">
+<title>This is chapar website</title>
+<style>
+    .topnav {
+        background-color: #333;
+        overflow: hidden;
+        font-family: IRANSans;
+    }
 
-<head>
-    {% block head %}
-    {% load static %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>This is chapar website</title>
-    {% endblock head %}
-    <style>
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            right: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.3s;
-            padding-top: 60px;
+    .main-item {
+        float: right;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        font-family: IRANSans;
+    }
+
+    #searchButton {
+        float: right;
+        margin: 10px 1px 10px 10px;
+        width: 7%;
+
+    }
+
+    #searchTextbox {
+        float: right;
+        margin: 14px 10px 10px 4px;
+        width: 25%;
+    }
+
+    /* start to style full navbar */
+    /* The Overlay (background) */
+    .overlay {
+        /* Height & width depends on how you want to reveal the overlay (see JS below) */
+        height: 0;
+        width: 100%;
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        background-color: rgb(0, 0, 0);
+        /* Black fallback color */
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Black w/opacity */
+        overflow-x: hidden;
+        /* Disable horizontal scroll */
+        transition: 0.5s;
+        /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    }
+
+    /* Position the content inside the overlay */
+    .overlay-content {
+        position: relative;
+        top: 25%;
+        /* 25% from the top */
+        width: 100%;
+        /* 100% width */
+        text-align: center;
+        /* Centered text/links */
+        margin-top: 30px;
+        /* 30px top margin to avoid conflict with the close button on smaller screens */
+    }
+
+    /* The navigation links inside the overlay */
+    .overlay a {
+        padding: 8px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        /* Display block instead of inline */
+        transition: 0.3s;
+        /* Transition effects on hover (color) */
+    }
+
+    /* When you mouse over the navigation links, change their color */
+    .overlay a:hover,
+    .overlay a:focus {
+        color: #f1f1f1;
+    }
+
+    /* Position the close button (top right corner) */
+    .overlay .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 45px;
+        font-size: 60px;
+    }
+
+    /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+    @media screen and (max-height: 450px) {
+        .overlay a {
+            font-size: 20px
         }
 
-        .sidebar a {
-            padding: 8px 32px 8px 8px;
-            text-decoration: none;
-            font-size: 16px;
-            color: #818181;
-            display: block;
-            transition: 0.1s;
+        .overlay .closebtn {
+            font-size: 40px;
+            top: 15px;
+            right: 35px;
         }
+    }
 
-        .sdiebar .closebtn {
-            position: absolute;
-            top: 0;
-            left: 25px;
-            margin-right: 50px;
-        }
 
-        .openbtn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #111;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            float: right;
-        }
-
-        #menu_button {
-            float: right;
-            margin-top: 6px;
-            margin-right: 6px;
-        }
-
-        #searchTextbox {
-            float: right;
-            margin: 14px 10px 10px 4px;
-            width: 25%;
-        }
-
-        #menu_button {
-            transition: margin-right 0.5s;
-            padding: 8px;
-        }
-    </style>
-</head>
+    /* end of style full navbar */
+</style>
 
 <body>
     <div class="topnav" id="topNavbar">
-        <button class="openbtn" onclick="openNav()">☰ </button>
-        <div id="sidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
-            <a href="{% url 'add_organization' %}">ایجاد سازمان/شرکت جدید</a>
-            <a href="#">مشاهده لیست حقوق جاری</a>
-            <a href="#">محاسبه حقوق</a>
-            <a href="#">محاسبه کارکرد</a>
-            <a href="#">گزارشات</a>
+
+            <a href="#" class="main-item" onclick="showDropdwonMenu('baseinfo')">اطلاعات پایه</a>
+            <div id="baseinfo" class="overlay">
+                <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('baseinfo')">&times;</a>
+                <div class="overlay-content">
+                    <a href="{% url 'add_organization' %}">اطلاعات کارگاه</a>
+                    <a href="#">اطلاعات کارکنان</a>
+                    <a href="#">وضعیت تاهل</a>
+                    <a href="#">محل کارگاه</a>
+                    <a href="#">نام پست های نگهبانی</a>
+                    <a href="#">نام بانک ها</a>
+                </div>
+            </div>
+
+        <a href="#" class="main-item" onclick="showDropdwonMenu('wageNav')">حقوق ودستمزد</a>
+        <div id="wageNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('wageNav')">&times;</a>
+            <div class="overlay-content">
+                <a href="#">لیست حقوق ماه جاری</a>
+                <a href="#">محاسبه حقوق</a>
+                <a href="#">چاپ لیست حقوق ماه جاری</a>
+                <a href="#">ایجاد فایل پرداخت</a>
+                <a href="#">چاپ فیش ماهیانه</a>
+                <a href="#">چاپ لیست مالیات</a>
+            </div>
         </div>
-        <a class="active" href="{% url 'home_view'  %}">صفحه اصلی</a>
-        <a href="#"><i class="fa fa-fw fa-envelope"></i> نامه های دریافتی</a>
-        <a href="#">نامه های ارسالی</a>
-        <a href="#">درباره من</a>
+
+        <a href="#" class="main-item" onclick="showDropdwonMenu('attendNav')">حضور وغیاب</a>
+        <div id="attendNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('attendNav')">&times;</a>
+            <div class="overlay-content">
+                <a href="#">لیست حضور وغیاب ماه جاری</a>
+                <a href="#">ایجاد حضور وغیاب</a>
+                <a href="#">آنالیز حضور و غیاب</a>
+                <a href="#">چاپ حضور و غیاب ماه جاری</a>
+                <a href="#">ایجاد فایل حضور و غیاب</a>
+                <a href="#">ورود اطلاعات حضور و غیاب</a>
+            </div>
+        </div>
+
+        <a href="#" class="main-item" onclick="showDropdwonMenu('reportNav')">گزارشات</a>
+        <div id="reportNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('reportNav')">&times;</a>
+            <div class="overlay-content">
+                <a href="#">لیست حضور وغیاب ماه جاری</a>
+                <a href="#">ایجاد حضور وغیاب</a>
+                <a href="#">آنالیز حضور و غیاب</a>
+                <a href="#">چاپ حضور و غیاب ماه جاری</a>
+                <a href="#">ایجاد فایل حضور و غیاب</a>
+                <a href="#">ورود اطلاعات حضور و غیاب</a>
+            </div>
+        </div>
         <input type="text" id="searchTextbox" name='search_value' placeholder="متن مورد نظر را وارد کنید...">
-        <a href=#><i class="fa fa-fw fa-search"></i>جستجو</a>
+        <a href=# class='main-item'><i class="fa fa-fw fa-search"></i>جستجو</a>
     </div>
+
+
     <script>
-        function openNav() {
-            document.getElementById("sidebar").style.width = "250px";
-            document.body.style.marginRight = "250px";
+
+        function showDropdwonMenu(menuName) {
+            document.getElementById(menuName).style.height = "100%";
         }
 
-        function closeNav() {
-            document.getElementById("sidebar").style.width = "0";
-            document.body.style.marginRight = "0";
+        function closeNav(naveName) {
+            document.getElementById(naveName).style.height = "0";
         }
+
+       
+
+
     </script>
-
-</body>
-
-</html>

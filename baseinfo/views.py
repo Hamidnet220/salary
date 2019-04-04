@@ -34,3 +34,50 @@ class AddWorkStatusView(FormView):
         form.save_record()
         return super().form_valid(form)
 
+class AddMaritalStatusView(FormView):
+    template_name='input_form.html'
+    form_class=MaritalStatusForm
+    success_url='/success/'
+    def form_valid(self, form):
+        form.save_record()
+        return super().form_valid(form)
+        
+class AddBankView(FormView):
+    template_name='input_form.html'
+    form_class=BankForm
+    success_url='/success/'
+    def form_valid(self, form):
+        form.save_record()
+        return super().form_valid(form)
+
+class AddWorkGroupView(FormView):
+    template_name='input_form.html'
+    form_class=WorkGroupForm
+    success_url='/success/'
+    def form_valid(self, form):
+        form.save_record()
+        return super().form_valid(form)
+
+class AddWorkPlaceView(FormView):
+    template_name='input_form.html'
+    form_class=WorkPlaceForm
+    success_url='/success/'
+    def form_valid(self, form):
+        form.save_record()
+        return super().form_valid(form)
+
+class AddPostPlaceView(FormView):
+    template_name='input_form.html'
+    form_class=PostPlaceForm
+    success_url='/success/'
+    def form_valid(self, form):
+        form.save_record()
+        return super().form_valid(form)
+
+class AddEmployeeView(FormView):
+    template_name='input_form.html'
+    form_class=EmployeeForm
+    success_url='/success/'
+    def form_valid(self, form):
+        form.save_record()
+        return super().form_valid(form)

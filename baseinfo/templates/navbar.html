@@ -113,18 +113,18 @@
 <body>
     <div class="topnav" id="topNavbar">
 
-            <a href="#" class="main-item" onclick="showDropdwonMenu('baseinfo')">اطلاعات پایه</a>
-            <div id="baseinfo" class="overlay">
-                <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('baseinfo')">&times;</a>
-                <div class="overlay-content">
-                    <a href="{% url 'add_organization' %}">اطلاعات کارگاه</a>
-                    <a href="#">اطلاعات کارکنان</a>
-                    <a href="#">وضعیت تاهل</a>
-                    <a href="#">محل کارگاه</a>
-                    <a href="#">نام پست های نگهبانی</a>
-                    <a href="#">نام بانک ها</a>
-                </div>
+        <a href="#" class="main-item" onclick="showDropdwonMenu('baseinfo')">اطلاعات پایه</a>
+        <div id="baseinfo" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('baseinfo')">&times;</a>
+            <div class="overlay-content">
+                <a href="{% url 'add_organization' %}">اطلاعات کارگاه</a>
+                <a href="#">اطلاعات کارکنان</a>
+                <a href="#">وضعیت تاهل</a>
+                <a href="#">محل کارگاه</a>
+                <a href="#">نام پست های نگهبانی</a>
+                <a href="#">نام بانک ها</a>
             </div>
+        </div>
 
         <a href="#" class="main-item" onclick="showDropdwonMenu('wageNav')">حقوق ودستمزد</a>
         <div id="wageNav" class="overlay">
@@ -166,6 +166,9 @@
         </div>
         <input type="text" id="searchTextbox" name='search_value' placeholder="متن مورد نظر را وارد کنید...">
         <a href=# class='main-item'><i class="fa fa-fw fa-search"></i>جستجو</a>
+
+        <a href="#" class="main-item" style="float:left;">+ ورود</a>
+
     </div>
 
 
@@ -179,7 +182,7 @@
             document.getElementById(naveName).style.height = "0";
         }
 
-       
+
 
 
     </script>

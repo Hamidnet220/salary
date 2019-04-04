@@ -82,7 +82,6 @@ class Employee(models.Model):
     marital_status  = models.ForeignKey(MaritalStatus,on_delete=models.DO_NOTHING)
     children_count  = models.IntegerField()
     work_group      = models.ForeignKey(WorkGroup,on_delete=models.SET_NULL,null=True)
-    work_place      = models.ForeignKey(WorkPlace,on_delete=models.SET_NULL,null=True)
     tax_exempt      = models.BooleanField(default=False)
     indsurence_exempt= models.BooleanField(default=False)
     tel             = models.CharField(max_length=19,blank=True)

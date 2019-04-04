@@ -118,11 +118,13 @@
             <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('baseinfo')">&times;</a>
             <div class="overlay-content">
                 <a href="{% url 'add_organization' %}">اطلاعات کارگاه</a>
-                <a href="#">اطلاعات کارکنان</a>
-                <a href="#">وضعیت تاهل</a>
-                <a href="#">محل کارگاه</a>
-                <a href="#">نام پست های نگهبانی</a>
-                <a href="#">نام بانک ها</a>
+                <a href="{% url 'add_employee' %}">اطلاعات کارکنان</a>
+                <a href="{% url 'add_maritalstatus' %}">وضعیت تاهل</a>
+                <a href="{% url 'add_maritalstatus' %}">وضعیت کارکنان</a>
+                <a href="{% url 'add_workplace' %}">محل کارگاه</a>
+                <a href="{% url 'add_workgroup' %}">گروهای شغلی</a>
+                <a href="{% url 'add_postplace' %}">نام پست های نگهبانی</a>
+                <a href="{% url 'add_bank' %}">نام بانک ها</a>
             </div>
         </div>
 

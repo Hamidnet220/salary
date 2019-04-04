@@ -5,5 +5,6 @@ from .views import *
 
 urlpatterns=[
     path('organization/addnew',AddOrganizationView.as_view(),name="add_organization"),
+    path('organizations/',orgnizations_view,name="organizations"),
     path('employeeStatus/addnew',AddEmployeeStatusView.as_view(),name="add_EmployeeStatus"),
 ]

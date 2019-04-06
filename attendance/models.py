@@ -1,6 +1,6 @@
 from django.db import models
-from ..wage.models import Wage
-from ..baseinfo.models import Employee
+from wage.models import Wage
+from baseinfo.models import Employee
 # Create your models here.
 
 class WorkdayStaus(models.Model):

@@ -61,7 +61,7 @@ class WorkPlace(models.Model):
 class PostPlace(models.Model):
     title               = models.CharField(max_length=60)
     number_of_employee  = models.IntegerField()
-    post_status         = models.ForeignKey(WorkStatus,on_delete=models.SET_NULL,nll=True)
+    post_status         = models.ForeignKey(WorkStatus,on_delete=models.PROTECT)
     decription          = models.TextField(blank=True)
 
     def __str__(self):

@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import *
+# from .views import *
+from .views.employee_view import *
+from .views.employer_view import *
+from .views.general_view import *
 
 
 

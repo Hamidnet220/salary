@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="js-persian-cal.css">
+    <script src="js-persian-cal.min.js"></script>
+    <style>
+        #input-form {
+            margin: 25px;
+            padding: 25px;
+            width: 90%;
+            background-color: rgba(45, 103, 179, 0.9);
+            border-radius: 15px 5px 15px 5px;
+        }
+
+        form input {
+            width: 100%;
+
+        }
+
+        label::after {
+            content: '';
+            display: block;
+        }
+
+        label {
+            color: aliceblue;
+        }
+
+        th {
+            text-align: center;
+            background-color: rgb(161, 159, 159);
+            border: 1px solid black;
+        }
+
+        td {
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        #data-list{
+            margin:0%;
+        }
+
+        #data-list table{
+            width: 100%;
+
+        }
+
+        
+    </style>
+
+</head>
+
+<body>
+    {% include "navbar.html" %}
+    {% load getattribute %}
+    <div id='data-list'>
+        <table>
+            <tr>
+                {% for title in titles %}
+                <th>
+                    {{title}}
+                </th>
+                {% endfor %}
+
+            </tr>
+
+            {% for object in objects %}
+            <tr>
+                {% for field in field_names %}
+
+                <td>{{ object|getattribute:field }}</td>
+
+                {% endfor %}
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</body>
+
+</html>

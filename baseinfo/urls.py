@@ -4,8 +4,6 @@ from .views.employee_view import *
 from .views.employer_view import *
 from .views.general_view import *
 
-
-
 urlpatterns=[
     path('organization/addnew',AddOrganizationView.as_view(),name="add_organization"),
     path('organizations/',organization_list_view,name="organizations"),

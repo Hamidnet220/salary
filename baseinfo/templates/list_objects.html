@@ -4,8 +4,6 @@
 <head>
 
     <style>
-      
-    
         label {
             color: aliceblue;
         }
@@ -22,38 +20,36 @@
             text-align: center;
             border: 1px solid #555;
             font-size: 92%;
+
+        }
+
+
+        #data-list table {
+            border-spacing: 0px;
+            width: 100%;
             
         }
 
-        
-        #data-list table {
-            border-spacing: 0px;
-        }
-
-        #data-list{
-            margin-top:5%;
-        }
-
-        #data-list table{
+        #data-list {
+            margin-top: 5%;
             width: 100%;
-
+            overflow:auto;
         }
 
-        .button{
+
+        .button {
             border: 1px solid #666;
             text-decoration: none;
             float: left;
             margin-left: 3px;
             margin-top: 8px;
-            padding:2px;
+            padding: 2px;
             background-color: #333;
             color: #f3f3f3;
             border-radius: 3px;
 
 
         }
-
-        
     </style>
 
 </head>
@@ -73,17 +69,17 @@
                 {% endfor %}
 
             </tr>
+            {% if objects %}
+                {% for object in objects %}
+                <tr>
+                    {% for field in field_names %}
 
-            {% for object in objects %}
-            <tr>
-                {% for field in field_names %}
+                    <td>{{ object|getattribute:field }}</td>
 
-                <td>{{ object|getattribute:field }}</td>
-
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-            </tr>
-            {% endfor %}
-
+            {% endif %}
         </table>
     </div>
 </body>

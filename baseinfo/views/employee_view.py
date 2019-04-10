@@ -6,6 +6,8 @@ from baseinfo.models import *
 
 
 def employees_list_view(request,*args,**kwargs):
+
+    
     context={
     'objects':Employee.objects.filter(),
     'titles':['نام','نام خانوادگی','نام پدر','کد ملی','شماره شناسنامه',

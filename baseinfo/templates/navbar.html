@@ -142,9 +142,9 @@
         <div id="wageNav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('wageNav')">&times;</a>
             <div class="overlay-content">
-                <a href="#">لیست حقوق ماه جاری</a>
-                <a href="#">محاسبه حقوق</a>
-                <a href="#">چاپ لیست حقوق ماه جاری</a>
+                <a href="{% url 'wage_list' %}">مشاهده لیست های حقوق</a>
+                <a href="{% url 'wage_details' %}">مشاهده جزپیات حقوق</a>
+                <a href="{% url 'loan_list' %}">لیست وام و مساعده</a>
                 <a href="#">ایجاد فایل پرداخت</a>
                 <a href="#">چاپ فیش ماهیانه</a>
                 <a href="#">چاپ لیست مالیات</a>

@@ -16,13 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.views.generic import TemplateView
+from baseinfo.views.general_view import home_view
 
 urlpatterns = [
+    path('',home_view.as_view(),name='home'),
     path('admin/', admin.site.urls),
     path('home/',TemplateView.as_view(template_name='home.html')),
-    path('baseinfo/',include('baseinfo.urls')),
+    path(r'^baseinfo/',include('baseinfo.urls')),
 ]
 
 urlpatterns+=[
     path('accounts/',include('django.contrib.auth.urls')),
+]
+
+urlpatterns+=[
+    path(r'^wage/',include('wage.urls')),
+]
+
+urlpatterns+=[
+    path(r'^attendance/',include('attendance.urls')),
 ]

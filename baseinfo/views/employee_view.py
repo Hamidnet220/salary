@@ -3,23 +3,12 @@ from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from baseinfo.forms import *
 from baseinfo.models import *
+from views_generator import ViewGenerator
 
 
 def employees_list_view(request,*args,**kwargs):
-
-    
-    context={
-    'objects':Employee.objects.filter(),
-    'titles':['نام','نام خانوادگی','نام پدر','کد ملی','شماره شناسنامه',
-            'کد بیمه','وضعیت','محل کار','محل پست','وضعیت تاهل',
-            'تعداد فرزند','گروه شغلی','معاف از مالیات','معاف از بیمه','تلفن','موبایل','توضیحات'],
-    'field_names':['firstname','lastname','fathername','national_code',
-                    'id_number','insurance_id','employee_status','work_place',
-                    'post_place','marital_status','children_count',
-                    'work_group','tax_exempt','indsurence_exempt','tel','mobile','description'],
-    'add_url_name':'add_employee',
-    }
-    return render(request,'list_objects.html',context)
+    view=ViewGenerator(Employee,True,True,'add_employee')
+    return render(request,'list_objects.html',view.get_context_template())
 
 
 class AddEmployeeView(FormView):

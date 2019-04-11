@@ -7,12 +7,18 @@ class PayType(models.Model):
     title       = models.CharField(max_length=150,verbose_name="عنوان نوع پرداخت")
     description = models.TextField(verbose_name=u"توضیحات")
 
+    def __str__(self):
+        return self.title
+
 
 class AdvanceAndLoan (models.Model):
     employee            = models.ForeignKey(Employee,on_delete=models.PROTECT,verbose_name=u"نام و نام خانوادگی")
-    pay_date            = models.DateField(auto_now_add=True,verbose_name=u"تاریخ پرداخت")
+    pay_date            = models.DateField(verbose_name=u"تاریخ پرداخت")
     amount              = models.DecimalField(max_digits=11,decimal_places=5,verbose_name=u"مبلغ")
     description         = models.TextField(null=True,blank=True,verbose_name=u"توضیحات")
+
+    def __str__(self):
+        return "{}-{}-{}".format(self.employee,self.pay_date,self.amount)
 
 class Wage(models.Model):
     title       = models.CharField(max_length=150,verbose_name=u"عنوان لیست")
@@ -20,6 +26,9 @@ class Wage(models.Model):
     month       = models.IntegerField(verbose_name=u"ماه")
     pay_type    = models.ForeignKey(PayType,on_delete=models.PROTECT,verbose_name=u"نوع پرداخت")
     is_locked   = models.BooleanField(verbose_name="وضعیت قفل")
+
+    def __str__(self):
+        return "{}-{}-{}".format(self.title,str(self.year),str(self.month))
 
 class WageDetail(models.Model):
     wage                    = models.ForeignKey(Wage,on_delete=models.PROTECT,verbose_name=u"نام لیست")

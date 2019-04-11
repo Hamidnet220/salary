@@ -68,6 +68,10 @@
                 </th>
                 {% endfor %}
 
+                {% if opration_buttons %}
+                <th>عملیات</th>
+                {% endif %}
+
             </tr>
             {% if objects %}
                 {% for object in objects %}
@@ -77,6 +81,11 @@
                     <td>{{ object|getattribute:field }}</td>
 
                     {% endfor %}
+
+                    {% if opration_buttons %}
+                    <td><button name={{object.id}} >ویرایش</button> 
+                        <button name={{object.id}} >حذف</button></td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             {% endif %}

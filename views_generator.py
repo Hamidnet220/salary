@@ -1,6 +1,6 @@
 class ViewGenerator():
     
-    def __init__(self,table,add_url='home'):
+    def __init__(self,table,opration_buttons=False,add_url='home'):
         self.table=table
         self.add_url=add_url
     # get all fields names of table 
@@ -26,6 +26,7 @@ class ViewGenerator():
         'titles': self.get_field_labels(),
         'field_names':self.get_filed_names(),
         'add_url_name':self.add_url,
+        'opration_buttons':True,
         }
 
         return context

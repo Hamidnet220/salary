@@ -17,7 +17,7 @@ class WageAddView(FormView):
 
 
 def wage_list_view(request,*args,**kwargs):
-    view=ViewGenerator(Wage,True,'add_wage')
+    view=ViewGenerator(Wage,True,True,'add_wage')
     return render(request,'list_objects.html',view.get_context_template())
 
 def wage_detail_list_view(request,*args,**kwargs):

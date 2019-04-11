@@ -27,13 +27,13 @@
         #data-list table {
             border-spacing: 0px;
             width: 100%;
-            
+
         }
 
         #data-list {
             margin-top: 5%;
             width: 100%;
-            overflow:auto;
+            overflow: auto;
         }
 
 
@@ -62,32 +62,45 @@
     <div id='data-list'>
         <table>
             <tr>
+                <!-- if select checkbox is tru you will seel check box in the first of all rows-->
+                {% if select_checkbox %}
+                <th><input type="checkbox">همه</th>
+                {% endif %}
+
                 {% for title in titles %}
                 <th>
                     {{title}}
                 </th>
                 {% endfor %}
 
+                <!-- if opration button is true the you will see opration button in last col -->
                 {% if opration_buttons %}
                 <th>عملیات</th>
                 {% endif %}
 
             </tr>
             {% if objects %}
-                {% for object in objects %}
-                <tr>
-                    {% for field in field_names %}
+            {% for object in objects %}
+            <tr>
+                <!-- if opration button is true the you will see opration button in last col -->
+                {% if select_checkbox %}
+                <td><input type="checkbox"></td>
+                {% endif %}
 
-                    <td>{{ object|getattribute:field }}</td>
+                {% for field in field_names %}
 
-                    {% endfor %}
+                <td>{{ object|getattribute:field }}</td>
 
-                    {% if opration_buttons %}
-                    <td><button name={{object.id}} >ویرایش</button> 
-                        <button name={{object.id}} >حذف</button></td>
-                    {% endif %}
-                </tr>
                 {% endfor %}
+
+                <!-- if opration button is true the you will see opration button in last col -->
+                {% if opration_buttons %}
+                <td><button name={{object.id}}>ویرایش</button>
+                    <button name={{object.id}}>حذف</button></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
             {% endif %}
         </table>
     </div>

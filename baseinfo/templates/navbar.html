@@ -3,6 +3,10 @@
 <link type="text/css" rel="stylesheet" href="{% static 'css/base.css' %}">
 <title>This is chapar website</title>
 <style>
+    body {
+        transition: 0.5s;
+    }
+
     .topnav {
         background-color: #333;
         overflow: hidden;
@@ -36,13 +40,13 @@
     /* The Overlay (background) */
     .overlay {
         /* Height & width depends on how you want to reveal the overlay (see JS below) */
-        height: 0;
-        width: 100%;
+        height: 100%;
+        width: 0;
         position: fixed;
         /* Stay in place */
         z-index: 1;
         /* Sit on top */
-        left: 0;
+        right: 0;
         top: 0;
         background-color: rgb(0, 0, 0);
         /* Black fallback color */
@@ -71,7 +75,7 @@
     .overlay a {
         padding: 8px;
         text-decoration: none;
-        font-size: 25px;
+        font-size: 20px;
         color: #818181;
         display: block;
         /* Display block instead of inline */
@@ -93,8 +97,8 @@
         font-size: 60px;
     }
 
-    .column{
-        float:right;
+    .column {
+        float: right;
         margin-right: 3%;
         text-align: right;
     }
@@ -131,7 +135,7 @@
                     <a href="{% url 'work_status' %}">لیست وضعیت های شغلی</a>
                     <a href="{% url 'marital_status' %}">لیست وضعیت تاهل</a>
                     <a href="{% url 'banks_list' %}">لیست بانک ها</a>
-                    
+
                 </div>
                 <div class="column">
                     <a href="{% url 'employees' %}">اطلاعات کارکنان</a>
@@ -192,15 +196,35 @@
     </div>
 
 
+
     <script>
 
+        var opened_menu = '';
+
         function showDropdwonMenu(menuName) {
-            document.getElementById(menuName).style.height = "100%";
+            if (opened_menu!=''){
+                closeNav(opened_menu)
+            }
+            document.getElementById(menuName).style.width = "20%";
+            opened_menu = menuName;
+            document.body.style.marginRight = "20%"
+
         }
 
         function closeNav(naveName) {
-            document.getElementById(naveName).style.height = "0";
+            document.getElementById(naveName).style.width = "0";
+            document.body.style.marginRight = "0"
         }
+
+
+        document.addEventListener('click',(evt)=>{
+            if(evt.target==document.body){
+                closeNav(opened_menu);
+            }
+        })
+
+
+        
 
 
 

@@ -127,6 +127,11 @@
                     <a href="{% url 'organizations' %}">اطلاعات کارگاه</a>
                     <a href="{% url 'add_workplace' %}">محل کارگاه</a>
                     <a href="{% url 'add_postplace' %}">نام پست های نگهبانی</a>
+                    <a href="{% url 'employee_status' %}">لیست وضعیت های پرسنل</a>
+                    <a href="{% url 'work_status' %}">لیست وضعیت های شغلی</a>
+                    <a href="{% url 'marital_status' %}">لیست وضعیت تاهل</a>
+                    <a href="{% url 'banks_list' %}">لیست بانک ها</a>
+                    
                 </div>
                 <div class="column">
                     <a href="{% url 'employees' %}">اطلاعات کارکنان</a>
@@ -134,6 +139,9 @@
                     <a href="{% url 'add_workgroup' %}">گروهای شغلی</a>
                     <a href="{% url 'add_maritalstatus' %}">وضعیت تاهل</a>
                     <a href="{% url 'add_bank' %}">نام بانک ها</a>
+                    <a href="{% url 'workgroup_list' %}">لیست گروه های شغلی</a>
+                    <a href="{% url 'workplace_list' %}">لیست محل های کاری</a>
+                    <a href="{% url 'postplace_llist' %}">لیست پست ها</a>
                 </div>
             </div>
         </div>
@@ -142,9 +150,9 @@
         <div id="wageNav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('wageNav')">&times;</a>
             <div class="overlay-content">
-                <a href="{% url 'wage_list' %}">مشاهده لیست های حقوق</a>
-                <a href="{% url 'wage_details' %}">مشاهده جزپیات حقوق</a>
-                <a href="{% url 'loan_list' %}">لیست وام و مساعده</a>
+                <a href="{% url 'wages_list' %}">مشاهده لیست های حقوق</a>
+                <a href="{% url 'wagedetails_list' %}">مشاهده جزییات حقوق</a>
+                <a href="{% url 'loans_list' %}">لیست وام و مساعده</a>
                 <a href="#">ایجاد فایل پرداخت</a>
                 <a href="#">چاپ فیش ماهیانه</a>
                 <a href="#">چاپ لیست مالیات</a>

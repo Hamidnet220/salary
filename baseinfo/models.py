@@ -90,7 +90,7 @@ class Employee(models.Model):
     description     = models.TextField(blank=True,null=True,verbose_name=u"توضیحات")
 
     def __str__(self):
-        return "{}-{}-{}".format(self.lastname,self.firstname,self.national_code)
+        return "{}-{}".format(self.lastname,self.firstname)
 
 
 class BankAccount(models.Model):

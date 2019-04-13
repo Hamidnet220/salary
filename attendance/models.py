@@ -16,5 +16,8 @@ class Worksheet(models.Model):
     employee        = models.ForeignKey(Employee,on_delete=models.PROTECT)
     date            = models.DateField()
     work_day_stat   = models.ForeignKey(WorkdayStaus,on_delete=models.PROTECT)
+
+    def __str__(self):
+        return "{}-{}-{}-{}".format(self.wage,self.employee,self.date,self.work_day_stat)
     
 

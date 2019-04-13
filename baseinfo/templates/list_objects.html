@@ -47,8 +47,15 @@
             background-color: #333;
             color: #f3f3f3;
             border-radius: 3px;
+        }
 
-
+        .opration_btn {
+            text-decoration: none;
+            float: right;
+            border: #333 solid 1px;
+            margin-left: 1px;
+            padding: 2px;
+            color: #11d;
         }
     </style>
 
@@ -89,9 +96,8 @@
                 <td><input type="checkbox"></td>
                 {% endif %}
                 <td>{{forloop.counter}}</td>
-                
-                {% for field in field_names %}
 
+                {% for field in field_names %}
                 <td>{{ object|getattribute:field }}</td>
 
                 {% endfor %}
@@ -99,8 +105,8 @@
                 <!-- if opration button is true the you will see opration button in last col -->
                 {% if opration_buttons %}
                 <td>
-                    {% for key,value in opration_buttons.items %}
-                    <button name={{object.id}} onclick={{key}}>{{value}}</button>
+                    {% for key,values in opration_buttons.items %}
+                    <a class='opration_btn' href="{% url values.1 %}" name={{object.id}} onclick={{key}}>{{values.0}}</a>
                     {% endfor %}
                 </td>
                 {% endif %}

@@ -95,8 +95,11 @@
 
                 <!-- if opration button is true the you will see opration button in last col -->
                 {% if opration_buttons %}
-                <td><button name={{object.id}}>ویرایش</button>
-                    <button name={{object.id}}>حذف</button></td>
+                <td>
+                    {% for key,value in opration_buttons.items %}
+                    <button name={{object.id}} onclick={{key}}>{{value}}</button>
+                    {% endfor %}
+                </td>
                 {% endif %}
 
             </tr>
@@ -104,6 +107,11 @@
             {% endif %}
         </table>
     </div>
+
+    <script>
+        
+    </script>
+
 </body>
 
 </html>

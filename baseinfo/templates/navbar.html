@@ -128,24 +128,18 @@
             <a href="javascript:void(0)" class="closebtn" onclick=" closeNav('baseinfo')">&times;</a>
             <div class="overlay-content">
                 <div class="column">
-                    <a href="{% url 'organizations' %}">اطلاعات کارگاه</a>
-                    <a href="{% url 'add_workplace' %}">محل کارگاه</a>
-                    <a href="{% url 'add_postplace' %}">نام پست های نگهبانی</a>
-                    <a href="{% url 'employee_status' %}">لیست وضعیت های پرسنل</a>
-                    <a href="{% url 'work_status' %}">لیست وضعیت های شغلی</a>
-                    <a href="{% url 'marital_status' %}">لیست وضعیت تاهل</a>
+                    <a href="{% url 'employers_list' %}">اطلاعات کارگاه</a>
+                    <a href="{% url 'employeestatuses_list' %}">لیست وضعیت های پرسنل</a>
+                    <a href="{% url 'workstatuses_list' %}">لیست وضعیت های شغلی</a>
+                    <a href="{% url 'maritalstatuses_list' %}">لیست وضعیت تاهل</a>
                     <a href="{% url 'banks_list' %}">لیست بانک ها</a>
 
                 </div>
                 <div class="column">
-                    <a href="{% url 'employees' %}">اطلاعات کارکنان</a>
-                    <a href="{% url 'add_maritalstatus' %}">وضعیت کارکنان</a>
-                    <a href="{% url 'add_workgroup' %}">گروهای شغلی</a>
-                    <a href="{% url 'add_maritalstatus' %}">وضعیت تاهل</a>
-                    <a href="{% url 'add_bank' %}">نام بانک ها</a>
-                    <a href="{% url 'workgroup_list' %}">لیست گروه های شغلی</a>
-                    <a href="{% url 'workplace_list' %}">لیست محل های کاری</a>
-                    <a href="{% url 'postplace_llist' %}">لیست پست ها</a>
+                    <a href="{% url 'employees_list' %}">اطلاعات کارکنان</a>
+                    <a href="{% url 'workgroups_list' %}">لیست گروه های شغلی</a>
+                    <a href="{% url 'workplaces_list' %}">لیست محل های کاری</a>
+                    <a href="{% url 'postplaces_llist' %}">لیست پست ها</a>
                 </div>
             </div>
         </div>

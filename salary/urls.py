@@ -22,7 +22,7 @@ urlpatterns = [
     path('',home_view.as_view(),name='home'),
     path('admin/', admin.site.urls),
     path('home/',TemplateView.as_view(template_name='home.html')),
-    path(r'^baseinfo/',include('baseinfo.urls')),
+    path('baseinfo/',include('baseinfo.urls')),
 ]
 
 urlpatterns+=[

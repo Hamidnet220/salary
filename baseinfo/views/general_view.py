@@ -13,7 +13,7 @@ class home_view(TemplateView):
 class AddEmployeeStatusView(FormView):
     template_name='input_form.html'
     form_class=EmployeeStatusForm
-    success_url='/success/'
+    success_url=reverse_lazy('employeestatuses_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
@@ -25,7 +25,7 @@ def employee_status_list_view(request,*args,**kwargs):
 class AddWorkStatusView(FormView):
     template_name='input_form.html'
     form_class=WorkStatusForm
-    success_url='/success/'
+    success_url=reverse_lazy('workstatuses_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
@@ -37,7 +37,7 @@ def work_status_list_View(request,*args,**kwargs):
 class AddMaritalStatusView(FormView):
     template_name='input_form.html'
     form_class=MaritalStatusForm
-    success_url='/success/'
+    success_url=reverse_lazy('maritalstatuses_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
@@ -49,7 +49,7 @@ def marital_status_list_view(request,*args,**kwargs):
 class AddBankView(FormView):
     template_name='input_form.html'
     form_class=BankForm
-    success_url='/success/'
+    success_url=reverse_lazy('banks_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
@@ -61,7 +61,7 @@ def bank_list_view(request,*args,**kwargs):
 class AddWorkGroupView(FormView):
     template_name='input_form.html'
     form_class=WorkGroupForm
-    success_url='/success/'
+    success_url=reverse_lazy('workgroups_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
@@ -73,7 +73,7 @@ def work_group_list_view(request,*args,**kwargs):
 class AddWorkPlaceView(FormView):
     template_name='input_form.html'
     form_class=WorkPlaceForm
-    success_url=reverse_lazy('workplace_list')
+    success_url=reverse_lazy('workplaces_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
@@ -85,7 +85,7 @@ def work_place_list_view(request,*args,**kwargs):
 class AddPostPlaceView(FormView):
     template_name='input_form.html'
     form_class=PostPlaceForm
-    success_url=reverse_lazy('postplace_list')
+    success_url=reverse_lazy('postplaces_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)

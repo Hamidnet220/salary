@@ -28,3 +28,14 @@ urlpatterns+=[
     path('postplaces/',post_place_list_view,name="postplaces_llist"),
 
 ]
+
+urlpatterns+=[
+    path('editemployee/',AddEmployeeView.as_view(),name="edit_employee"),
+
+]
+
+urlpatterns+=[
+    path('delemployee/',AddEmployeeView.as_view(),name="del_employee"),
+
+]
+

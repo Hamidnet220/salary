@@ -12,7 +12,7 @@ def orgnizations_view(request,*args,**kwargs):
 
 
 def organization_list_view(request,*args,**kwargs):
-    view=ViewGenerator(Employer,{'edit_obj':'ویرایش','delete_obj':'حذف'},True,'add_employer')
+    view=ViewGenerator(Employer,{'edit_obj':['ویرایش','home'],'delete_obj':['حذف','home']},True,'add_employer')
     return render(request,'list_objects.html',view.get_context_template())
 
 class AddOrganizationView(FormView):

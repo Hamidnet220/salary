@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,FormView
 from wage.models import *
@@ -17,11 +17,11 @@ class WageAddView(FormView):
 
 
 def wage_list_view(request,*args,**kwargs):
-    view=ViewGenerator(Wage,True,True,'add_wage')
+    view=ViewGenerator(Wage,{'edit_obj':'ویرایش','delete_obj':'حذف','wage_details':'ریز حقوق','attendance_details':'ریز کارکرد'},True,'add_wage')
     return render(request,'list_objects.html',view.get_context_template())
 
 def wage_detail_list_view(request,*args,**kwargs):
-    view=ViewGenerator(WageDetail)
+    view=ViewGenerator(WageDetail,{},True,'home')
     return render(request,'list_objects.html',view.get_context_template())
 
 class LoanAddView(FormView):
@@ -33,8 +33,17 @@ class LoanAddView(FormView):
         form.save_record()
         return super().form_valid(form)
 
+def update_loan_viwe(request,id,*args,**kwargs):
+    instance=AdvanceAndLoan.objects.get(id=id)
+    form=AddNewLoanForm(request.POST or None,instance=instance)
+    
+    if form.is_valid():
+        form.save()
+        return redirect('loans_list')
+    return render (request,'input_form.html',{'form':form})
+
 def loan_list_view(request,*args,**kwargs):
-    view=ViewGenerator(AdvanceAndLoan,'add_loan')
+    view=ViewGenerator(AdvanceAndLoan,{'edit':'ویرایش','delete':'حذف'},False,'add_loan')
     return render(request,'list_objects.html',view.get_context_template())
 
 def paytype_list_view(request,*args,**kwargs):

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from baseinfo.forms import *
@@ -11,18 +12,13 @@ def orgnizations_view(request,*args,**kwargs):
 
 
 def organization_list_view(request,*args,**kwargs):
-    context={
-    'objects':Employer.objects.filter(is_deleted=False),
-    'titles':['عنوان','تلفن','فکس','آدرس','کد کارگاهی'],
-    'field_names':['title','tel','fax','address','insurance_code'],
-    'add_url_name':'add_organization',
-    }
-    return render(request,'list_objects.html',context)
+    view=ViewGenerator(Employer,{'edit_obj':'ویرایش','delete_obj':'حذف'},True,'add_employer')
+    return render(request,'list_objects.html',view.get_context_template())
 
 class AddOrganizationView(FormView):
     template_name='input_form.html'
     form_class=EmployerForm
-    success_url='/organizations/'
+    success_url=reverse_lazy('employers_list ')
     
     def form_valid(self, form):
         form.save_record()

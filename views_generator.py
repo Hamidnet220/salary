@@ -9,17 +9,18 @@ class ViewGenerator():
     def get_filed_names(self):
         filed_names=list()
         for f in self.table._meta.get_fields():
-            if hasattr(f,'verbose_name'):
+            if hasattr(f,'verbose_name') and f.name!='id':
                 filed_names.append(f.name)
         return filed_names
         
     # get all fields labels of table
     def get_field_labels(self):
-        filed_labels=list()
+        field_labels=list()
+        field_labels.append('ردیف')
         for f in self.table._meta.get_fields():
-            if hasattr(f,'verbose_name'):
-                filed_labels.append(f.verbose_name)
-        return filed_labels
+            if hasattr(f,'verbose_name') and f.name!='id':
+                field_labels.append(f.verbose_name)
+        return field_labels
 
     # create context for html template
     def get_context_template(self):
@@ -30,6 +31,7 @@ class ViewGenerator():
         'add_url_name':self.add_url,
         'opration_buttons':self.opration_buttons,
         'select_checkbox':self.select_checkbox,
+        
         }
 
         return context

@@ -86,7 +86,7 @@
                 {% if select_checkbox %}
                 <td><input type="checkbox"></td>
                 {% endif %}
-
+                <td>{{forloop.counter}}</td>
                 {% for field in field_names %}
 
                 <td>{{ object|getattribute:field }}</td>
@@ -109,7 +109,7 @@
     </div>
 
     <script>
-        
+
     </script>
 
 </body>

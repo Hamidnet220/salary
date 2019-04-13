@@ -12,3 +12,7 @@ urlpatterns+=[
     path('loan/addnew/',LoanAddView.as_view(),name='add_loan'),
 
 ]
+
+urlpatterns+=[
+    path('wage/update/<int:id>',update_loan_viwe,name='update_wage')
+]

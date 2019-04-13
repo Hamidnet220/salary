@@ -30,9 +30,9 @@ urlpatterns+=[
 ]
 
 urlpatterns+=[
-    path(r'^wage/',include('wage.urls')),
+    path('wage/',include('wage.urls')),
 ]
 
 urlpatterns+=[
-    path(r'^attendance/',include('attendance.urls')),
+    path('attendance/',include('attendance.urls')),
 ]

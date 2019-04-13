@@ -21,6 +21,7 @@ from baseinfo.views.general_view import home_view
 urlpatterns = [
     path('',home_view.as_view(),name='home'),
     path('admin/', admin.site.urls),
+    path('admin/doc', include('django.contrib.admindocs.urls')),
     path('home/',TemplateView.as_view(template_name='home.html')),
     path('baseinfo/',include('baseinfo.urls')),
 ]

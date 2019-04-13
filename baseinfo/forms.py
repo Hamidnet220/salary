@@ -58,6 +58,8 @@ class WorkPlaceForm(forms.Form):
 
 class PostPlaceForm(forms.Form):
     title           = forms.CharField(label="عنوان محل پست:",max_length=60)
+    number_of_employee = forms.IntegerField(label="تعداد نفرات پست")
+    post_status     = forms.IntegerField(label="وضعیت پست")
     decription      = forms.CharField(label="توضیحات:",required=False,widget=forms.Textarea)
     def save_record(self):
         PostPlace.objects.create(**self.cleaned_data)

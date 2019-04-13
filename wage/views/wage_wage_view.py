@@ -17,7 +17,7 @@ class WageAddView(FormView):
 
 
 def wage_list_view(request,*args,**kwargs):
-    view=ViewGenerator(Wage,{'edit_obj':'ویرایش','delete_obj':'حذف','wage_details':'ریز حقوق','attendance_details':'ریز کارکرد'},True,'add_wage')
+    view=ViewGenerator(Wage,{'edit_obj':['ویرایش','edit_wage'],'delete_obj':['حذف','del_wage'],'wage_details':['ریز حقوق','wage_details'],'attendance_details':['ریز کارکرد','attendance_details']},True,'add_wage')
     return render(request,'list_objects.html',view.get_context_template())
 
 def wage_detail_list_view(request,*args,**kwargs):

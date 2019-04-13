@@ -79,7 +79,9 @@
                 {% endif %}
 
             </tr>
+            <!-- check if exist any object -->
             {% if objects %}
+            <!-- loop through objects for display in html file -->
             {% for object in objects %}
             <tr>
                 <!-- if opration button is true the you will see opration button in last col -->
@@ -87,6 +89,7 @@
                 <td><input type="checkbox"></td>
                 {% endif %}
                 <td>{{forloop.counter}}</td>
+                
                 {% for field in field_names %}
 
                 <td>{{ object|getattribute:field }}</td>

@@ -7,7 +7,7 @@ from views_generator import ViewGenerator
 
 
 def employees_list_view(request,*args,**kwargs):
-    view=ViewGenerator(Employee,True,True,'add_employee')
+    view=ViewGenerator(Employee,{'edit_obj':'ویرایش','delete_obj':'حذف'},True,'add_employee')
     return render(request,'list_objects.html',view.get_context_template())
 
 

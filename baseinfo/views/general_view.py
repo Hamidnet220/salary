@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from baseinfo.forms import *
@@ -18,7 +19,7 @@ class AddEmployeeStatusView(FormView):
         return super().form_valid(form)
         
 def employee_status_list_view(request,*args,**kwargs):
-    view=ViewGenerator(EmployeeStatus,'add_employeestatus')
+    view=ViewGenerator(EmployeeStatus,{},False,'add_employeestatus')
     return render(request,"list_objects.html",view.get_context_template())
 
 class AddWorkStatusView(FormView):
@@ -30,7 +31,7 @@ class AddWorkStatusView(FormView):
         return super().form_valid(form)
 
 def work_status_list_View(request,*args,**kwargs):
-    view=ViewGenerator(WorkStatus,'add_workstatus')
+    view=ViewGenerator(WorkStatus,{},False,'add_workstatus')
     return render(request,"list_objects.html",view.get_context_template())
 
 class AddMaritalStatusView(FormView):
@@ -42,7 +43,7 @@ class AddMaritalStatusView(FormView):
         return super().form_valid(form)
 
 def marital_status_list_view(request,*args,**kwargs):
-    view=ViewGenerator(MaritalStatus,'add_maritalstatus')
+    view=ViewGenerator(MaritalStatus,{},False,'add_maritalstatus')
     return render(request,"list_objects.html",view.get_context_template())
         
 class AddBankView(FormView):
@@ -54,7 +55,7 @@ class AddBankView(FormView):
         return super().form_valid(form)
 
 def bank_list_view(request,*args,**kwargs):
-    view=ViewGenerator(Bank,'add_bank')
+    view=ViewGenerator(Bank,{},False,'add_bank')
     return render(request,"list_objects.html",view.get_context_template())
 
 class AddWorkGroupView(FormView):
@@ -66,31 +67,31 @@ class AddWorkGroupView(FormView):
         return super().form_valid(form)
 
 def work_group_list_view(request,*args,**kwargs):
-    view=ViewGenerator(WorkGroup,'add_workgroup')
+    view=ViewGenerator(WorkGroup,{},False,'add_workgroup')
     return render(request,"list_objects.html",view.get_context_template())
 
 class AddWorkPlaceView(FormView):
     template_name='input_form.html'
     form_class=WorkPlaceForm
-    success_url='/success/'
+    success_url=reverse_lazy('workplace_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
 
 def work_place_list_view(request,*args,**kwargs):
-    view=ViewGenerator(WorkPlace,'add_workplace')
+    view=ViewGenerator(WorkPlace,{},False,'add_workplace')
     return render(request,"list_objects.html",view.get_context_template())
 
 class AddPostPlaceView(FormView):
     template_name='input_form.html'
     form_class=PostPlaceForm
-    success_url='/success/'
+    success_url=reverse_lazy('postplace_list')
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
 
 def post_place_list_view(request,*args,**kwargs):
-    view=ViewGenerator(PostPlace,'add_postplace')
+    view=ViewGenerator(PostPlace,{},False,'add_postplace')
     return render(request,"list_objects.html",view.get_context_template())
 
 

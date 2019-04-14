@@ -31,7 +31,9 @@ class AddWorkStatusView(FormView):
         return super().form_valid(form)
 
 def work_status_list_View(request,*args,**kwargs):
-    view=ViewGenerator(WorkStatus,{},False,'add_workstatus')
+    view=ViewGenerator(WorkStatus,
+    {'edit_btn':['ویرایش','edit_workstatus'],'del_btn':['حذف','del_workstatus']},
+    False,'add_workstatus')
     return render(request,"list_objects.html",view.get_context_template())
 
 class AddMaritalStatusView(FormView):

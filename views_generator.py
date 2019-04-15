@@ -23,9 +23,14 @@ class ViewGenerator():
         return field_labels
 
     # create context for html template
-    def get_context_template(self):
+    def get_context_template(self,id=''):
+        if id!="":
+            objects=self.table.objects.all().filter(id=id)
+        else:
+            objects=self.table.objects.all().filter()
+
         context={
-        'objects':self.table.objects.all(),
+        'objects':objects,
         'titles': self.get_field_labels(),
         'field_names':self.get_filed_names(),
         'add_url_name':self.add_url,

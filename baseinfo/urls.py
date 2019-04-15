@@ -30,14 +30,14 @@ urlpatterns+=[
 ]
 
 urlpatterns+=[
-    path('editemployee/',AddEmployeeView.as_view(),name="edit_employee"),
+    path('editemployee/<int:id>',AddEmployeeView.as_view(),name="edit_employee"),
     path('editworkstatus/',work_status_list_View,name="edit_workstatus"),
 
 
 ]
 
 urlpatterns+=[
-    path('delemployee/',AddEmployeeView.as_view(),name="del_employee"),
+    path('delemployee/<int:id>',AddEmployeeView.as_view(),name="del_employee"),
     path('delworkstatus/',work_status_list_View,name="del_workstatus"),
 
 

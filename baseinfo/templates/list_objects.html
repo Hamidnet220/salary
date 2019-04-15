@@ -109,7 +109,7 @@
                 {% if opration_buttons %}
                 <td>
                     {% for key,values in opration_buttons.items %}
-                    <a class='opration_btn' href="{% url values.1 %}" name={{object.id}} onclick={{key}}>{{values.0}}</a>
+                    <a class='opration_btn' href="{% url values.1 id=object.id %}" name={{object.id}} onclick={{key}}>{{values.0}}</a>
                     {% endfor %}
                 </td>
                 {% endif %}

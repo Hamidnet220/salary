@@ -3,6 +3,7 @@ from .views.employee_view import *
 from .views.employer_view import *
 from .views.general_view import *
 
+# employee urls
 urlpatterns=[
     path('organization/addnew',AddOrganizationView.as_view(),name="add_employer"),
     path('employeeStatus/addnew',AddEmployeeStatusView.as_view(),name="add_employeestatus"),
@@ -16,8 +17,12 @@ urlpatterns=[
 
 ]
 
+# employer urls
+
 urlpatterns+=[
     path('employers/',organization_list_view,name="employers_list"),
+    path('editemployer/<int:id>',organization_list_view,name="edit_employer"),
+    path('delemployer/<int:id>',organization_list_view,name="del_employer"),
     path('employees/',employees_list_view,name="employees_list"),
     path('employeestatus/',employee_status_list_view,name="employeestatuses_list"),
     path('workstatus/',work_status_list_View,name="workstatuses_list"),

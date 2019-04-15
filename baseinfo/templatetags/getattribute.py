@@ -10,12 +10,12 @@ def getattribute(value, arg):
 
     if hasattr(value, str(arg)):
         attr =getattr(value, arg)
-        if attr==True:
-            return 'بله'
-        elif attr==False:
-            return 'خیر'
-        else:
-            return attr
+        if type(attr)==bool:
+            if attr==True:
+                return 'بله'
+            elif attr==False:
+                return 'خیر'
+        return attr
 
     elif hasattr(value, 'has_key') and value.has_key(arg):
         return value[arg]

@@ -56,7 +56,6 @@ class WorkPlace(models.Model):
     def __str__(self):
         return self.title
 
-
 class PostPlace(models.Model):
     title               = models.CharField(max_length=60,verbose_name=u"محل پست")
     number_of_employee  = models.IntegerField(verbose_name=u"تعداد کارکنان ")
@@ -66,7 +65,21 @@ class PostPlace(models.Model):
     def __str__(self):
         return self.title
 
+class Gender(models.Model):
+    title              = models.CharField(max_length=20,verbose_name=u"جنسیت")
+    description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
 
+class MilitaryServiceStat(models.Model):
+    title              = models.CharField(max_length=40,verbose_name=u'وضعیت نظام وظیفه')
+    description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
+
+class City(models.Model):
+    title              = models.CharField(max_length=50,verbose_name=u'نام شهر')
+    description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
+
+class EducationDegree(models.Model):
+    title              = models.CharField(max_length=60,verbose_name=u'')
+    description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
 
 class Employee(models.Model):
     employer        = models.ForeignKey(Employer,on_delete=models.DO_NOTHING,verbose_name=u"کارفرما")
@@ -76,6 +89,15 @@ class Employee(models.Model):
     national_code   = models.CharField(max_length=10,verbose_name=u"کد ملی")
     id_number       = models.CharField(max_length=10,verbose_name=u"شماره شناسنامه")
     insurance_id    = models.CharField(max_length=10,verbose_name=u"کد بیمه")
+    gender          = models.ForeignKey(Gender,on_delete=models.SET_NULL,null=True,verbose_name=u'جنسیت')        
+    military_service= models.ForeignKey(MilitaryServiceStat,on_delete=models.SET_NULL,null=True,verbose_name=u'وضعیت نظام وظیفه')
+    place_of_born   = models.ForeignKey(City,on_delete=models.SET_NULL,null=True,verbose_name=u'محل تولد',related_name='place_of_born')
+    place_of_issu   = models.ForeignKey(City,on_delete=models.SET_NULL,null=True,verbose_name=u'محل صدور',related_name='place_of_issu')
+    date_of_born    = models.DateField(blank=True,null=True,verbose_name=u'تاریخ تولد')
+    date_of_issu    = models.DateField(blank=True,null=True,verbose_name=u'تاریخ صدور')
+    education_degree= models.ForeignKey(EducationDegree,on_delete=models.SET_NULL,null=True,verbose_name=u'مدرک تحصیلی')
+    age             = models.IntegerField(blank=True,null=True,verbose_name=u'سن')
+    experince_year  = models.IntegerField(blank=True,null=True,verbose_name=u'سابقه کار')
     employee_status = models.ForeignKey(EmployeeStatus,on_delete=models.DO_NOTHING,verbose_name=u"وضعیت")
     work_place      = models.ForeignKey(WorkPlace,on_delete=models.SET_NULL,null=True,verbose_name=u"محل کار")
     post_place      = models.ForeignKey(PostPlace,on_delete=models.SET_NULL,null=True,verbose_name=u"محل پست")
@@ -87,6 +109,7 @@ class Employee(models.Model):
     indsurence_exempt= models.BooleanField(default=False,verbose_name=u"معافیت بیمه")
     tel             = models.CharField(max_length=19,blank=True,verbose_name=u"تلفن")
     mobile          = models.CharField(max_length=19,blank=True,verbose_name=u"موبایل")
+    address         = models.TextField(blank=True,null=True,verbose_name=u'آدرس')
     description     = models.TextField(blank=True,null=True,verbose_name=u"توضیحات")
 
     def __str__(self):

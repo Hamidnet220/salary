@@ -14,6 +14,11 @@ urlpatterns=[
     path('workplace/addnew',AddWorkPlaceView.as_view(),name="add_workplace"),
     path('postplace/addnew',AddPostPlaceView.as_view(),name="add_postplace"),
     path('addemployee/',AddEmployeeView.as_view(),name="add_employee"),
+    path('militaryservstatus/',military_status_list_view,name="militaryservs_list"),
+    path('addmilitarystat/',AddMilitaryStatus.as_view(),name='add_militaryservstat'),
+    path('editmilitarystat/<int:id>',AddMilitaryStatus.as_view(),name='edit_militaryservstat'),
+    path('delmilitarystat/<int:id>',AddMilitaryStatus.as_view(),name='del_militaryservstat'),
+    path('cities/',citiy_list_view,name="cities_list"),
 
 ]
 
@@ -21,11 +26,13 @@ urlpatterns=[
 
 urlpatterns+=[
     path('employers/',organization_list_view,name="employers_list"),
-    path('editemployer/<int:id>',organization_list_view,name="edit_employer"),
+    path('editemployer/<int:id>',edit_employer_view,name="edit_employer"),
     path('delemployer/<int:id>',delete_employer_view,name="del_employer"),
     path('employees/',employees_list_view,name="employees_list"),
     path('employeestatus/',employee_status_list_view,name="employeestatuses_list"),
     path('workstatus/',work_status_list_View,name="workstatuses_list"),
+    path('editworkstatus/<int:id>',edit_work_status_view,name="edit_workstatus"),
+    path('delworkstatus/<int:id>',edit_work_status_view,name="del_workstatus"),
     path('maritalstatus/',marital_status_list_view,name="maritalstatuses_list"),
     path('banks/',bank_list_view,name="banks_list"),
     path('workgroups/',work_group_list_view,name="workgroups_list"),
@@ -36,8 +43,6 @@ urlpatterns+=[
 
 urlpatterns+=[
     path('editemployee/<int:id>',AddEmployeeView.as_view(),name="edit_employee"),
-    path('editworkstatus/',work_status_list_View,name="edit_workstatus"),
-
 
 ]
 

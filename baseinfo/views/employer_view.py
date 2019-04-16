@@ -15,6 +15,14 @@ def organization_list_view(request,*args,**kwargs):
     view=ViewGenerator(Employer,{'edit_obj':['ویرایش','edit_employer'],'delete_obj':['حذف','del_employer']},True,'add_employer')
     return render(request,'list_objects.html',view.get_context_template())
 
+def edit_employer_view(request,id,*args,**kwargs):
+    instance=Employer.objects.get(id=id)
+    form=EmployerForm(request.POST or None,instance=instance)
+    if form.is_valid():
+        form.update_record(id)
+        return redirect('employers_list')
+    return render(request,'input_form.html',{'form':form})
+
 def delete_employer_view(request,id,*args,**kwargs):
     obj=Employer.objects.get(id=id)
 

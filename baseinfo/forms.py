@@ -1,15 +1,17 @@
 from django import forms
 from .models import *
+from django.utils.translation import ugettext_lazy as _
 
-class EmployerForm(forms.Form):
-    title           = forms.CharField(label="عنوان شرکت/سازمان:",max_length=60)
-    tel             = forms.CharField(label="تلفن تماس:",max_length=19)
-    fax             = forms.CharField(label="فکس:",max_length=19)
-    address         = forms.CharField(label="آدرس:",required=False)
-    insurance_code  = forms.CharField(label="کد بیمه:",max_length=20)
+class EmployerForm(forms.ModelForm):
+    class Meta:
+        model= Employer
+        fields='__all__'
 
-    def save_record(self):
+    def save_record(self):              
         Employer.objects.create(**self.cleaned_data)
+
+    def update_record(self,id):              
+        Employer.objects.filter(id=id).update(**self.cleaned_data)
 
 class EmployeeStatusForm(forms.Form):
     title           = forms.CharField(label="عنوان وضعیت کارکنان:",max_length=50)
@@ -63,6 +65,20 @@ class PostPlaceForm(forms.Form):
     decription      = forms.CharField(label="توضیحات:",required=False,widget=forms.Textarea)
     def save_record(self):
         PostPlace.objects.create(**self.cleaned_data)
+
+
+class AddMilitarySerStatus(forms.ModelForm):
+
+    class Meta:
+        model=MilitaryServiceStat
+        fields= '__all__'
+
+    def save_record(self):
+        MilitaryServiceStat.objects.create(**self.cleaned_data)
+
+        
+
+        
 
 class EmployeeForm(forms.Form):
     employer        = forms.ModelChoiceField(Employer.objects.all(),label="نام کارفرما:")

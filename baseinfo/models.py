@@ -77,6 +77,10 @@ class City(models.Model):
     title              = models.CharField(max_length=50,verbose_name=u'نام شهر')
     description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
 
+class Country(models):
+    title              = models.CharField(max_length=50,verbose_name=u'کشور')
+    description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
+    
 class EducationDegree(models.Model):
     title              = models.CharField(max_length=60,verbose_name=u'')
     description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')

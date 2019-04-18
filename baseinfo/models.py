@@ -77,10 +77,10 @@ class City(models.Model):
     title              = models.CharField(max_length=50,verbose_name=u'نام شهر')
     description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
 
-class Country(models):
+class Country(models.Model):
     title              = models.CharField(max_length=50,verbose_name=u'کشور')
     description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
-    
+
 class EducationDegree(models.Model):
     title              = models.CharField(max_length=60,verbose_name=u'')
     description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
@@ -90,7 +90,7 @@ class Employee(models.Model):
     firstname       = models.CharField(max_length=50,verbose_name=u"نام")
     lastname        = models.CharField(max_length=50,verbose_name=u"نام خانوادگی")
     fathername      = models.CharField(max_length=50,verbose_name=u"نام پدر")
-    national_code   = models.CharField(max_length=10,verbose_name=u"کد ملی")
+    national_code   = models.CharField(max_length=10,verbose_name=u"کد ملی",unique=True)
     id_number       = models.CharField(max_length=10,verbose_name=u"شماره شناسنامه")
     insurance_id    = models.CharField(max_length=10,verbose_name=u"کد بیمه")
     gender          = models.ForeignKey(Gender,on_delete=models.SET_NULL,null=True,verbose_name=u'جنسیت')        

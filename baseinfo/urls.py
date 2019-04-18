@@ -19,6 +19,10 @@ urlpatterns=[
     path('editmilitarystat/<int:id>',AddMilitaryStatus.as_view(),name='edit_militaryservstat'),
     path('delmilitarystat/<int:id>',AddMilitaryStatus.as_view(),name='del_militaryservstat'),
     path('cities/',citiy_list_view,name="cities_list"),
+    path('addcity/',AddCityView.as_view(),name="add_city"),
+    path('countries/',country_list_view,name="countries_list"),
+    path('addcountry/',AddCountryView.as_view(),name="add_country"),
+
 
 ]
 

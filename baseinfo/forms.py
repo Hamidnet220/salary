@@ -61,7 +61,7 @@ class WorkPlaceForm(forms.Form):
 class PostPlaceForm(forms.Form):
     title           = forms.CharField(label="عنوان محل پست:",max_length=60)
     number_of_employee = forms.IntegerField(label="تعداد نفرات پست")
-    post_status     = forms.IntegerField(label="وضعیت پست")
+    post_status     = forms.ModelChoiceField(WorkStatus.objects.all(),label="وضعیت پست")
     decription      = forms.CharField(label="توضیحات:",required=False,widget=forms.Textarea)
     def save_record(self):
         PostPlace.objects.create(**self.cleaned_data)
@@ -76,9 +76,33 @@ class AddMilitarySerStatus(forms.ModelForm):
     def save_record(self):
         MilitaryServiceStat.objects.create(**self.cleaned_data)
 
+    def update_record(self,id):              
+        MilitaryServiceStat.objects.filter(id=id).update(**self.cleaned_data)
         
 
-        
+class AddCityForm(forms.ModelForm):
+
+    class Meta:
+        model=City
+        fields= '__all__'
+
+    def save_record(self):
+        City.objects.create(**self.cleaned_data)   
+
+    def update_record(self,id):              
+        City.objects.filter(id=id).update(**self.cleaned_data) 
+
+class AddCountryForm(forms.ModelForm):
+
+    class Meta:
+        model=Country
+        fields= '__all__'
+
+    def save_record(self):
+        Country.objects.create(**self.cleaned_data)     
+
+    def update_record(self,id):              
+        Country.objects.filter(id=id).update(**self.cleaned_data)   
 
 class EmployeeForm(forms.Form):
     employer        = forms.ModelChoiceField(Employer.objects.all(),label="نام کارفرما:")

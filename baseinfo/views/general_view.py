@@ -26,9 +26,29 @@ def employee_status_list_view(request,*args,**kwargs):
 #----------------------------------------------------------------------
 # city views         
 def citiy_list_view(request,*args,**kwargs):
-    view=ViewGenerator(City,{},False,'add_employeestatus')
+    view=ViewGenerator(City,{},False,'add_city')
     return render(request,"list_objects.html",view.get_context_template())
+class AddCityView(FormView):
+    template_name='input_form.html'
+    form_class=AddCityForm
+    success_url=reverse_lazy('cities_list')
 
+    def form_valid(self,form):
+        form.save_record()
+        return super().form_valid(form)
+#----------------------------------------------------------------------
+# country views         
+def country_list_view(request,*args,**kwargs):
+    view=ViewGenerator(Country,{},False,'add_country')
+    return render(request,"list_objects.html",view.get_context_template())
+class AddCountryView(FormView):
+    template_name='input_form.html'
+    form_class=AddCountryForm
+    success_url=reverse_lazy('countries_list')
+
+    def form_valid(self,form):
+        form.save_record()
+        return super().form_valid(form)
 #----------------------------------------------------------------------
 # military status  views
 

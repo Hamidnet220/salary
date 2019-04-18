@@ -5,6 +5,9 @@ from wage.models import *
 from wage.forms import *
 from attendance.models import *
 from views_generator import ViewGenerator
+from khayyam import *
+import datetime
+
 
 class WageAddView(FormView):
     template_name='input_form.html'
@@ -27,7 +30,7 @@ def wage_detail_list_view(request,id,*args,**kwargs):
     wage_detaisl_objs=WageDetail.objects.filter(wage_id=id)
     if wage_detaisl_objs.count()!=0:
         view=ViewGenerator(WageDetail,{},True,'home')
-        return render(request,'list_objects.html',view.get_context_template(id))
+        return render(request,'list_objects.html',view.get_context_template())
     context={
         'message':'برای این لیست حقوق ریز حقوق  وجود ندارد آیا می خواهید ایجاد کنید؟',
         'buttons':{'yes':['بله','home'],'no':['خیر','wages_list'],'back':['برگشت به صفحه قبل','wages_list']}
@@ -36,14 +39,38 @@ def wage_detail_list_view(request,id,*args,**kwargs):
     return render(request,'confirm_template.html',context)
 
 def attendance_detail_list_view(request,id,*args,**kwargs):
-    wage_detaisl_objs=Worksheet.objects.filter(wage_id=id)
+    wage=Wage.objects.get(id=id)
+    start_date=JalaliDate(wage.year,wage.month)
+    days_of_month=start_date.daysinmonth
+    end_date=start_date+datetime.timedelta(days_of_month-1)
+
+    days_title=list()
+    days_title.append(start_date)
+    for day in range(1,days_of_month):
+        days_title.append(start_date+datetime.timedelta(day))
+        
+    
+    start_date=start_date.todate()
+    end_date=end_date.todate()
+    wage_detaisl_objs=Worksheet.objects.filter(wage_id=id).filter(date__gte=start_date).filter(date__lte=end_date)
+    employees=Worksheet.objects.distinct('employee')
+    employee_worksheet=Worksheet.objects.filter(wage_id=id).filter(date__gte=start_date).filter(date__lte=end_date)
+    print(employee_worksheet)
+        
+    
+   
     if wage_detaisl_objs.count()!=0:
-        view=ViewGenerator(Worksheet,{},True,'home')
-        return render(request,'list_objects.html',view.get_context_template(id))
+        context={
+        'days_title':days_title,
+        'employees':employees,
+        'select_checkbox':True,
+        }
+        return render(request,'logsheet.html',context)
+        
+
     context={
         'message':'برای این لیست حقوق ریز کارکرد وجود ندارد آیا می خواهید ایجاد کنید؟',
         'buttons':{'yes':['بله','home'],'no':['خیر','wages_list'],'back':['برگشت به صفحه قبل','wages_list']}
-        
     }
     return render(request,'confirm_template.html',context)
 

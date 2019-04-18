@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
 
-    </head>
-    <body>
-        {% include "navbar.html" %}
-        <h>{{message}}</h>
-    </body>
+<head>
+    <style>
+        #selectemployees{
+            font-size: 25px;
+            margin-right: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+    <h>{{message}}</h>
+    <div id='selectemployees'>
+        <form action="" method="POST">{% csrf_token %}
+            <input type="radio" name='selectemployees' />انتخاب بر اساس نام کارگاه<br>
+            <input type="radio" name='selectemployees' />کپی پرسنل ماه قبل<br>
+            <input type="radio" name='selectemployees' />انتخاب بر اساس لیست کارکرد<br>
+            <input type="radio" name='selectemployees' />انتخاب پرسنل به صورت تکی<br>
+            <input type="submit" name='select' value='تایید' />
+        </form>
+    </div>
+
+</body>
+
 </html>

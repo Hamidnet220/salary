@@ -61,6 +61,23 @@
             padding: 2px;
             color: #11d;
         }
+
+        #oprations button{
+            float: right
+        }
+#BackToTop{
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    background-color: #666;
+    font-size: 35px;
+    text-decoration: none;
+    z-index: 9999999;
+
+
+}
+
+        
     </style>
 
 </head>
@@ -68,7 +85,17 @@
 <body>
     {% include "navbar.html" %}
     {% load getattribute %}
+    {% load getdayabbr %}
 
+
+    <div id="page_top"></div>
+    <a href="#page_top" id="BackToTop" class="fa fa-angle-up fa-4x-up"></a>
+
+    <div id="oprations">
+        <button>آنالیز حضور وغیاب</button>
+        <button>انتقال به حقوق و دستمزد</button>
+        <button>ایجاد گزارش</button>
+    </div>
     <div id='data-list'>
         <table>
             <tr>
@@ -76,6 +103,7 @@
                 {% if select_checkbox %}
                 <th><input type="checkbox">همه</th>
                 {% endif %}
+                <th>ردیف </th>
                 <th>نام و نام خانوادگی </th>
                 {% for title in days_title %}
                 <th>{{title}}</th>
@@ -88,10 +116,18 @@
 
             </tr>
 
-            {% for employee in employees %}
+            {% for object in objects %}
             <tr>
+                 <!-- if opration button is true the you will see opration button in last col -->
+                 {% if select_checkbox %}
+                 <td><input type="checkbox"></td>
+                 {% endif %}
+
                 <td>{{forloop.counter}}</td>
-                <td>{{employee|getattribute:'employee'}}</td>
+                <td>{{object|getattribute:'employee'}}</td>
+                {% for day in object|getattribute:'work_days_stat' %}
+                        <td>{{day|getdayabbr }}</td>
+                {% endfor %}
             <tr>
                 {% endfor %}
                 <!-- check if exist any object -->
@@ -99,12 +135,7 @@
                 <!-- loop through objects for display in html file -->
                 {% for object in objects %}
             <tr>
-                <!-- if opration button is true the you will see opration button in last col -->
-                {% if select_checkbox %}
-                <td><input type="checkbox"></td>
-                {% endif %}
-                <td>{{forloop.counter}}</td>
-
+               
                 {% for field in field_names %}
                 <td>{{ object|getattribute:field }}</td>
 

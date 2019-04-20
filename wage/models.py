@@ -71,5 +71,7 @@ class WageDetail(models.Model):
     public_message          = models.TextField(blank=True,null  =True,verbose_name=u"پیام عمومی")
     private_message         = models.TextField(blank=True,null  =True,verbose_name=u"پیام اختصاصی")             
     
+    class Meta:
+        unique_together=('wage','employee')
 
 

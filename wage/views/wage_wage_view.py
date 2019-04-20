@@ -49,21 +49,21 @@ def attendance_detail_list_view(request,id,*args,**kwargs):
     for day in range(1,days_of_month):
         days_title.append(start_date+datetime.timedelta(day))
         
-    
+    shiftname=ShiftName.objects.all()
     start_date=start_date.todate()
     end_date=end_date.todate()
-    wage_detaisl_objs=Worksheet.objects.filter(wage_id=id).filter(date__gte=start_date).filter(date__lte=end_date)
-    employees=Worksheet.objects.distinct('employee')
-    employee_worksheet=Worksheet.objects.filter(wage_id=id).filter(date__gte=start_date).filter(date__lte=end_date)
-    print(employee_worksheet)
+    attendance_objs=Worksheet.objects.filter(wage_id=id)
+   
         
     
    
-    if wage_detaisl_objs.count()!=0:
+    if attendance_objs.count()!=0:
         context={
         'days_title':days_title,
-        'employees':employees,
+        'shiftname':shiftname,
+        'objects':attendance_objs,
         'select_checkbox':True,
+        'days_of_month':days_of_month,
         }
         return render(request,'logsheet.html',context)
         

@@ -19,6 +19,9 @@ class Worksheet(models.Model):
     employee        = models.ForeignKey(Employee,on_delete=models.PROTECT)
     work_days_stat   = ArrayField(models.IntegerField(blank=True,null=True),size=31,)
 
+    class Meta:
+        unique_together=('wage','employee')
+
     def __str__(self):
         return "{}-{}-{}".format(self.wage,self.work_days_stat,self.employee)
     

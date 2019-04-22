@@ -23,6 +23,7 @@ class AdvanceAndLoan (models.Model):
 class Wage(models.Model):
     title       = models.CharField(max_length=150,verbose_name=u"عنوان لیست")
     year        = models.IntegerField(verbose_name=u"سال")
+    company     = models.ForeignKey(Employer,on_delete=models.PROTECT,verbose_name=u"شرکت")
     month       = models.IntegerField(verbose_name=u"ماه")
     pay_type    = models.ForeignKey(PayType,on_delete=models.PROTECT,verbose_name=u"نوع پرداخت")
     is_locked   = models.BooleanField(verbose_name="وضعیت قفل")
@@ -33,7 +34,6 @@ class Wage(models.Model):
 class WageDetail(models.Model):
     wage                    = models.ForeignKey(Wage,on_delete=models.PROTECT,verbose_name=u"نام لیست")
     employee                = models.ForeignKey(Employee,on_delete=models.PROTECT,verbose_name=u"نام ونام خانوادگی")
-    work_group              = models.ForeignKey(WorkGroup,on_delete=models.PROTECT,verbose_name=u"گروه شغلی")
     daily_base              = models.DecimalField(default=0,max_digits=11,decimal_places=3,verbose_name=u"‍پایه روزانه")
     work_days               = models.SmallIntegerField(default=0,verbose_name=u"تعداد روز کارکرد")
     absent_days             = models.SmallIntegerField(default=0,verbose_name=u"روز غیبت")
@@ -73,5 +73,8 @@ class WageDetail(models.Model):
     
     class Meta:
         unique_together=('wage','employee')
+
+    def __str__(self):
+        return "{}-{}-{}".format(self.employee,self.wage.year,self.wage.month)
 
 

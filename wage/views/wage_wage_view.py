@@ -7,6 +7,7 @@ from attendance.models import *
 from views_generator import ViewGenerator
 from khayyam import *
 import datetime
+import math
 
 
 class WageAddView(FormView):
@@ -37,6 +38,33 @@ def wage_detail_list_view(request,id,*args,**kwargs):
         
     }
     return render(request,'confirm_template.html',context)
+
+def logsheet_detail_view(request,id,*args,**kwargs):
+    worksheet=Worksheet.objects.get(id=id)
+    jalali_date=JalaliDate(worksheet.wage.year,worksheet.wage.month)
+    days_in_month=jalali_date.daysinmonth
+    first_day_of_month=jalali_date.weekday()
+    weeks=math.ceil(days_in_month/7)
+    calendar_days=[0]*(weeks*7)
+    for i in range(1,days_in_month):
+        calendar_days[i+first_day_of_month]=i
+
+    context={
+        'worksheet':worksheet,
+        'weeks':weeks,
+        'calendar_days':calendar_days, }
+
+    return render(request,'logsheet_details.html',context)
+
+def import_emoloyee_view(request,id,*args,**kwargs):
+    wage=Wage.objects.get(id=id)
+    
+    employees=Employee.objects.filter(employer=1)
+    employer=Employer.objects.get(id=1)
+    
+    for employee in employees:
+        wage_obj={'wage':wage,'employee':employee,'workgroup':employee.workgroup}
+        WageDetail.objects.create(**wage_obj)
 
 def attendance_detail_list_view(request,id,*args,**kwargs):
     wage=Wage.objects.get(id=id)

@@ -9,7 +9,7 @@ def getattribute(value, arg):
     """Gets an attribute of an object dynamically from a string name"""
 
     if hasattr(value, str(arg)):
-        attr =getattr(value, arg)
+        attr =getattr(value, arg)   
         if type(attr)==bool:
             if attr==True:
                 return 'بله'

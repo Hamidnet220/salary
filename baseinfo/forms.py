@@ -7,10 +7,10 @@ class EmployerForm(forms.ModelForm):
         model= Employer
         fields='__all__'
 
-    def save_record(self):              
+    def save_record(self):
         Employer.objects.create(**self.cleaned_data)
 
-    def update_record(self,id):              
+    def update_record(self,id):
         Employer.objects.filter(id=id).update(**self.cleaned_data)
 
 class EmployeeStatusForm(forms.Form):
@@ -76,9 +76,9 @@ class AddMilitarySerStatus(forms.ModelForm):
     def save_record(self):
         MilitaryServiceStat.objects.create(**self.cleaned_data)
 
-    def update_record(self,id):              
+    def update_record(self,id):
         MilitaryServiceStat.objects.filter(id=id).update(**self.cleaned_data)
-        
+
 
 class AddCityForm(forms.ModelForm):
 
@@ -87,10 +87,10 @@ class AddCityForm(forms.ModelForm):
         fields= '__all__'
 
     def save_record(self):
-        City.objects.create(**self.cleaned_data)   
+        City.objects.create(**self.cleaned_data)
 
-    def update_record(self,id):              
-        City.objects.filter(id=id).update(**self.cleaned_data) 
+    def update_record(self,id):
+        City.objects.filter(id=id).update(**self.cleaned_data)
 
 class AddCountryForm(forms.ModelForm):
 
@@ -99,10 +99,10 @@ class AddCountryForm(forms.ModelForm):
         fields= '__all__'
 
     def save_record(self):
-        Country.objects.create(**self.cleaned_data)     
+        Country.objects.create(**self.cleaned_data)
 
-    def update_record(self,id):              
-        Country.objects.filter(id=id).update(**self.cleaned_data)   
+    def update_record(self,id):
+        Country.objects.filter(id=id).update(**self.cleaned_data)
 
 class EmployeeForm(forms.Form):
     employer        = forms.ModelChoiceField(Employer.objects.all(),label="نام کارفرما:")
@@ -133,5 +133,18 @@ class EmployeeFormModel(forms.ModelForm):
         model=Employee
         fields='__all__'
 
-    def update_record(self,id):              
-        Employee.objects.filter(id=id).update(**self.cleaned_data)  
+    def update_record(self,id):
+        Employee.objects.filter(id=id).update(**self.cleaned_data)
+
+# Constant form
+class ConstantForm(forms.ModelForm):
+
+    class Meta:
+        model=Constant
+        fields="__all__"
+
+    def save_record(self):
+        Constant.objects.create(**self.cleaned_data)
+
+    def update_record(self,id):
+        Constant.objects.filter(id=id).update(**self.cleaned_data)

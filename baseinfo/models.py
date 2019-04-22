@@ -13,9 +13,10 @@ class Employer(models.Model):
         return self.title
 
 class Constant(models.Model):
+    year            = models.IntegerField(verbose_name=u'سال')
     title           = models.CharField(max_length=60,verbose_name=u'عنوان ثابت')
     amount          = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u'مبلغ')
-    description     = models.TextField(blank=True,null=True)
+    description     = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
 
     def __str__(self):
         return "{}-{}".format(self.title,self.amout)

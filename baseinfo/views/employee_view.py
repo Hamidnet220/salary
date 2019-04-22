@@ -25,10 +25,8 @@ class AddEmployeeView(FormView):
 def edit_employee_view(request,id,*arg,**kwargs):
     instance=Employee.objects.get(id=id)
     form=EmployeeFormModel(request.POST or None,instance=instance)
-    
+
     if form.is_valid():
         form.update_record(id)
         return redirect('employees_list')
     return render(request,'input_form.html',{'form':form})
-    
-    

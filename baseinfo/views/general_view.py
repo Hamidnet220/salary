@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView,CreateView
@@ -10,7 +10,7 @@ from views_generator import ViewGenerator
 class home_view(TemplateView):
     template_name='home.html'
 #----------------------------------------------------------------------
-# employee status views 
+# employee status views
 class AddEmployeeStatusView(FormView):
     template_name='input_form.html'
     form_class=EmployeeStatusForm
@@ -18,13 +18,15 @@ class AddEmployeeStatusView(FormView):
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
-        
+
 def employee_status_list_view(request,*args,**kwargs):
     view=ViewGenerator(EmployeeStatus,{},False,'add_employeestatus')
     return render(request,"list_objects.html",view.get_context_template())
 
+
+
 #----------------------------------------------------------------------
-# city views         
+# city views
 def citiy_list_view(request,*args,**kwargs):
     view=ViewGenerator(City,{},False,'add_city')
     return render(request,"list_objects.html",view.get_context_template())
@@ -37,7 +39,7 @@ class AddCityView(FormView):
         form.save_record()
         return super().form_valid(form)
 #----------------------------------------------------------------------
-# country views         
+# country views
 def country_list_view(request,*args,**kwargs):
     view=ViewGenerator(Country,{},False,'add_country')
     return render(request,"list_objects.html",view.get_context_template())
@@ -62,7 +64,7 @@ class AddMilitaryStatus(CreateView):
     template_name='input_form.html'
     form_class=AddMilitarySerStatus
     success_url=reverse_lazy('militaryservs_list')
-    
+
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
@@ -96,8 +98,41 @@ class AddMaritalStatusView(FormView):
 def marital_status_list_view(request,*args,**kwargs):
     view=ViewGenerator(MaritalStatus,{},False,'add_maritalstatus')
     return render(request,"list_objects.html",view.get_context_template())
+
 #----------------------------------------------------------------------
-# bank views 
+# constants views
+class AddConstantView(FormView):
+    template_name="input_form.html"
+    form_class=ConstantForm
+    success_url=reverse_lazy("constants_list")
+
+    def form_valid(self,form):
+        form.save_record()
+        return super().form_valid(form)
+
+def constants_list_view(request,*args,**kwargs):
+    view=ViewGenerator(Constant,
+    {'edit_btn':['ویرایش','edit_constant'],'del_btn':['حذف','del_constant']}
+    ,False,'add_constant')
+    return render(request,"list_objects.html",view.get_context_template())
+
+def edit_constant_view(request,id,*args,**kwargs):
+    instance=Constant.objects.get(id=id)
+    form=ConstantForm(request.POST or None,instance=instance)
+
+    if form.is_valid():
+        form.update_record(id)
+        return redirect('constants_list')
+    return render(request,'input_form.html',{'form':form})
+
+
+def del_constant_view(request,id,*args,**kwargs):
+    obj=Constant.objects.get(id=id)
+    obj.delete()
+    return redirect('constants_list')
+#----------------------------------------------------------------------
+# bank views
+
 class AddBankView(FormView):
     template_name='input_form.html'
     form_class=BankForm
@@ -150,5 +185,3 @@ class AddPostPlaceView(FormView):
 def post_place_list_view(request,*args,**kwargs):
     view=ViewGenerator(PostPlace,{},False,'add_postplace')
     return render(request,"list_objects.html",view.get_context_template())
-
-

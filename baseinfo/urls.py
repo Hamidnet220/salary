@@ -22,7 +22,10 @@ urlpatterns=[
     path('addcity/',AddCityView.as_view(),name="add_city"),
     path('countries/',country_list_view,name="countries_list"),
     path('addcountry/',AddCountryView.as_view(),name="add_country"),
-
+    path('constants/',constants_list_view,name="constants_list"),
+    path('addconstant/',AddConstantView.as_view(),name="add_constant"),
+    path('delconstant/<int:id>',del_constant_view,name="del_constant"),
+    path('editconstant/<int:id>',edit_constant_view,name="edit_constant"),
 
 ]
 
@@ -56,4 +59,3 @@ urlpatterns+=[
 
 
 ]
-

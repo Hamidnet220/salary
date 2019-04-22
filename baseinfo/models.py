@@ -11,8 +11,16 @@ class Employer(models.Model):
 
     def __str__(self):
         return self.title
+        
+class Constant(models.Model):
+    title           = models.CharField(max_length=60,verbose_name=u'عنوان ثابت')
+    amount          = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u'مبلغ')
+    description     = models.TextField(blank=True,null=True)
 
-class EmployeeStatus(models.Model):
+    def __str__(self):
+        return "{}-{}".format(self.title,self.amout)
+
+class EmployeeStatus(models.Model):1
     title           = models.CharField(max_length=50,verbose_name=u"وضعیت پرسنل")
     description     = models.TextField(blank=True,verbose_name=u"توضیحات")
     def __str__(self):
@@ -31,7 +39,7 @@ class MaritalStatus(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 class Bank(models.Model):
     title           = models.CharField(max_length=50,verbose_name=u"نام بانک")
     description     = models.TextField(verbose_name=u"توضیحات")
@@ -69,10 +77,10 @@ class PostPlace(models.Model):
 class Gender(models.Model):
     title              = models.CharField(max_length=20,verbose_name=u"جنسیت")
     description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
-    
+
     def __str__(self):
         return self.title
-    
+
 
 
 class MilitaryServiceStat(models.Model):
@@ -92,15 +100,15 @@ class City(models.Model):
 class Country(models.Model):
     title              = models.CharField(max_length=50,verbose_name=u'کشور')
     description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
-    
+
     def __str__(self):
         return self.title
 
 
 class EducationDegree(models.Model):
-    title              = models.CharField(max_length=60,verbose_name=u'')
+    title              = models.CharField(max_length=60,verbose_name=u'مدرک تحصیلی')
     description        = models.TextField(blank=True,null=True,verbose_name=u'توضیحات')
-    
+
     def __str__(self):
         return self.title
 
@@ -113,7 +121,7 @@ class Employee(models.Model):
     national_code   = models.CharField(max_length=10,verbose_name=u"کد ملی",unique=True)
     id_number       = models.CharField(max_length=10,verbose_name=u"شماره شناسنامه")
     insurance_id    = models.CharField(max_length=10,verbose_name=u"کد بیمه")
-    gender          = models.ForeignKey(Gender,on_delete=models.SET_NULL,null=True,verbose_name=u'جنسیت')        
+    gender          = models.ForeignKey(Gender,on_delete=models.SET_NULL,null=True,verbose_name=u'جنسیت')
     military_service= models.ForeignKey(MilitaryServiceStat,on_delete=models.SET_NULL,null=True,verbose_name=u'وضعیت نظام وظیفه')
     place_of_born   = models.ForeignKey(City,on_delete=models.SET_NULL,null=True,verbose_name=u'محل تولد',related_name='place_of_born')
     place_of_issu   = models.ForeignKey(City,on_delete=models.SET_NULL,null=True,verbose_name=u'محل صدور',related_name='place_of_issu')

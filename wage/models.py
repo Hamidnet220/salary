@@ -21,12 +21,24 @@ class AdvanceAndLoan (models.Model):
         return "{}-{}-{}".format(self.employee,self.pay_date,self.amount)
 
 class Wage(models.Model):
-    title       = models.CharField(max_length=150,verbose_name=u"عنوان لیست")
-    year        = models.IntegerField(verbose_name=u"سال")
-    company     = models.ForeignKey(Employer,on_delete=models.PROTECT,verbose_name=u"شرکت")
-    month       = models.IntegerField(verbose_name=u"ماه")
-    pay_type    = models.ForeignKey(PayType,on_delete=models.PROTECT,verbose_name=u"نوع پرداخت")
-    is_locked   = models.BooleanField(verbose_name="وضعیت قفل")
+    title                     = models.CharField(max_length=150,verbose_name=u"عنوان لیست")
+    year                      = models.IntegerField(verbose_name=u"سال")
+    company                   = models.ForeignKey(Employer,on_delete=models.PROTECT,verbose_name=u"شرکت")
+    month                     = models.IntegerField(verbose_name=u"ماه")
+    total_employees           = models.IntegerField(verbose_name=u"تعداد کارکنان")
+    total_workdays            = models.IntegerField(verbose_name=u"تعداد روزهای کاری")
+    total_dayoffs             = models.IntegerField(verbose_name=u"جمع روزهای مرخصی")
+    total_absents             = models.IntegerField(verbose_name=u"جمع روزهای غیبت")
+    total_overtime            = models.IntegerField(verbose_name=u"جمع ساعت اضافه کاری")
+    total_gross_amount        = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"جمع ناخالص")
+    total_insuracne_amount    = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"مبلغ بیمه")
+    total_7per_insur_amount   = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"مبلغ ۷٪ بیمه")
+    total_23per_insur_amount  = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"مبلغ 23٪ بیمه")
+    total_tax_included_amount = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"مبلغ مشمول مالیات")
+    total_tax_amount          = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"جمع مالیات")
+    total_net_amount          = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"جمع خالص پرداختی")
+    pay_type                  = models.ForeignKey(PayType,on_delete=models.PROTECT,verbose_name=u"نوع پرداخت")
+    is_locked                 = models.BooleanField(verbose_name="وضعیت قفل")
 
     def __str__(self):
         return "{}-{}-{}".format(self.title,str(self.year),str(self.month))
@@ -69,12 +81,10 @@ class WageDetail(models.Model):
     deduction2              = models.DecimalField(default=0,max_digits=11,decimal_places=3,verbose_name=u"سایر کسورات ۲")
     net_pay                 = models.DecimalField(default=0,max_digits=11,decimal_places=3,verbose_name=u"خالص پرداختی")
     public_message          = models.TextField(blank=True,null  =True,verbose_name=u"پیام عمومی")
-    private_message         = models.TextField(blank=True,null  =True,verbose_name=u"پیام اختصاصی")             
-    
+    private_message         = models.TextField(blank=True,null  =True,verbose_name=u"پیام اختصاصی")
+
     class Meta:
         unique_together=('wage','employee')
 
     def __str__(self):
         return "{}-{}-{}".format(self.employee,self.wage.year,self.wage.month)
-
-

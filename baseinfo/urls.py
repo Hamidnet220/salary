@@ -46,7 +46,7 @@ urlpatterns+=[
 ]
 
 urlpatterns+=[
-    path('editemployee/<int:id>',AddEmployeeView.as_view(),name="edit_employee"),
+    path('editemployee/<int:id>',edit_employee_view,name="edit_employee"),
 
 ]
 

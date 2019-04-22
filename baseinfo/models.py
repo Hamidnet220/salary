@@ -42,6 +42,7 @@ class Bank(models.Model):
 
 class WorkGroup(models.Model):
     title           = models.CharField(max_length=100,verbose_name=u"عنوان گروه")
+    daily_rate      = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u'پایه روزانه')
     child_benefit   = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"مبلغ حق اولاد")
     dwelling_benefit= models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"مبلغ حق مسکن")
     Bon_benefit     = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u"مبلغ بن")
@@ -127,7 +128,7 @@ class Employee(models.Model):
     work_status     = models.ForeignKey(WorkStatus,on_delete=models.PROTECT,verbose_name=u"وضعیت کاری")
     marital_status  = models.ForeignKey(MaritalStatus,on_delete=models.DO_NOTHING,verbose_name=u"وضعیت تاهل")
     children_count  = models.IntegerField(verbose_name=u"تعداد فرزند")
-    work_group      = models.ForeignKey(WorkGroup,on_delete=models.SET_NULL,null=True,verbose_name=u"گروه")
+    workgroup      = models.ForeignKey(WorkGroup,on_delete=models.SET_NULL,null=True,verbose_name=u"گروه")
     tax_exempt      = models.BooleanField(default=False,verbose_name=u"معافیت مالیاتی")
     indsurence_exempt= models.BooleanField(default=False,verbose_name=u"معافیت بیمه")
     tel             = models.CharField(max_length=19,blank=True,verbose_name=u"تلفن")

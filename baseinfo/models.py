@@ -11,7 +11,7 @@ class Employer(models.Model):
 
     def __str__(self):
         return self.title
-        
+
 class Constant(models.Model):
     title           = models.CharField(max_length=60,verbose_name=u'عنوان ثابت')
     amount          = models.DecimalField(max_digits=50,decimal_places=2,verbose_name=u'مبلغ')
@@ -20,9 +20,10 @@ class Constant(models.Model):
     def __str__(self):
         return "{}-{}".format(self.title,self.amout)
 
-class EmployeeStatus(models.Model):1
+class EmployeeStatus(models.Model):
     title           = models.CharField(max_length=50,verbose_name=u"وضعیت پرسنل")
     description     = models.TextField(blank=True,verbose_name=u"توضیحات")
+
     def __str__(self):
         return self.title
 

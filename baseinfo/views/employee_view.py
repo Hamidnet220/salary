@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
@@ -20,3 +20,15 @@ class AddEmployeeView(FormView):
     def form_valid(self, form):
         form.save_record()
         return super().form_valid(form)
+
+
+def edit_employee_view(request,id,*arg,**kwargs):
+    instance=Employee.objects.get(id=id)
+    form=EmployeeFormModel(request.POST or None,instance=instance)
+    
+    if form.is_valid():
+        form.update_record(id)
+        return redirect('employees_list')
+    return render(request,'input_form.html',{'form':form})
+    
+    

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        #worksheet {
+            width: 80%;
+            height: 80%;
+            text-align: center;
+        }
+
+        #header {
+            border: solid 1px black;
+            width: 100%;
+            text-align: center;
+            display: block;
+            font-size: 1.5em;
+
+        }
+
+        #worksheet_details {
+            width: 100%;
+        }
+
+        #worksheet_details table {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    {% include "navbar.html" %}
+    {% load getattribute %}
+    {% load getcalendar %}
+    {% load customfilters %}
+
+    <div id='worksheet'>
+        <div id='header'>لیست حضور وغیاب مربوط به ماه</div>
+        <di id='worksheet_details'>
+            <table>
+                <tr>
+                    <th>شنبه</th>
+                    <th>یکشنه</th>
+                    <th>دوشنبه</th>
+                    <th>سه شنبه</th>
+                    <th>چهارشنبه</th>
+                    <th>پنج شنبه</th>
+                    <th style="background-color:#f22;">جمعه</th>
+                </tr>
+
+               
+
+            </table>
+        </di>
+    </div>
+
+    <script>
+
+    </script>
+
+</body>
+
+</html>

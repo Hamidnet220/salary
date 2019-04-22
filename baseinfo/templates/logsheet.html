@@ -66,15 +66,22 @@
             float: right
         }
 #BackToTop{
-    position: fixed;
-    right: 40px;
-    bottom: 40px;
-    background-color: #666;
-    font-size: 35px;
-    text-decoration: none;
-    z-index: 9999999;
-
-
+            color: white;
+            text-decoration: none;
+            border-radius: 23px;
+            background-color: #666;
+            position: fixed;
+            z-index: 999999;
+            bottom: 35px;
+            right: 10px;
+            font-size: 2.5em;
+            height: 35px;
+            width: 37px;
+            text-align: center;
+            vertical-align: top;
+            display: inline-block;
+            line-height: 29px;
+            cursor:pointer;
 }
 
         
@@ -92,7 +99,6 @@
     <a href="#page_top" id="BackToTop" class="fa fa-angle-up fa-4x-up"></a>
 
     <div id="oprations">
-        <button>آنالیز حضور وغیاب</button>
         <button>انتقال به حقوق و دستمزد</button>
         <button>ایجاد گزارش</button>
     </div>
@@ -116,6 +122,8 @@
 
             </tr>
 
+
+
             {% for object in objects %}
             <tr>
                  <!-- if opration button is true the you will see opration button in last col -->
@@ -124,7 +132,7 @@
                  {% endif %}
 
                 <td>{{forloop.counter}}</td>
-                <td>{{object|getattribute:'employee'}}</td>
+                <td><a href="{% url 'calculate_worksheet' id=object.id %}">{{object|getattribute:'employee'}}</a></td>
                 {% for day in object|getattribute:'work_days_stat' %}
                         <td>{{day|getdayabbr }}</td>
                 {% endfor %}

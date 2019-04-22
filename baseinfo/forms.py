@@ -126,3 +126,12 @@ class EmployeeForm(forms.Form):
     description     = forms.CharField(label="توضسحات:",required=False,widget=forms.Textarea)
     def save_record(self):
         Employee.objects.create(**self.cleaned_data)
+
+class EmployeeFormModel(forms.ModelForm):
+
+    class Meta:
+        model=Employee
+        fields='__all__'
+
+    def update_record(self,id):              
+        Employee.objects.filter(id=id).update(**self.cleaned_data)  
